@@ -1,10 +1,4 @@
 url: https://dataninjafi.github.io/eufundr/
 template:
   bootstrap: 5
-navbar:
-  title: "eufundr"
-  left:
-    - text: "Reference"
-      href: reference/index.html
-    - text: "Articles"
-      href: articles/index.html
+
