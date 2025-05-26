@@ -24,8 +24,8 @@ head(fi_projects)
 ```
 
 ```{r}
-all_beneficiaries <- get_kohesio_beneficiaries()
-head(all_beneficiaries)
+fi_beneficiaries <- get_kohesio_beneficiaries("FI")
+head(fi_beneficiaries)
 ```
 
 ## Financial Transparency System (FTS)
@@ -47,3 +47,4 @@ head(horizon_fi)
 ```{r}
 h2020_fi <- get_horizon_2020("FI")
 head(h2020_fi)
+```

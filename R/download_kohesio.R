@@ -6,9 +6,9 @@
 #' @export
 get_kohesio_projects <- function(country = NULL) {
   countries <- c(
-    "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
-    "DE", "EL", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
-    "PL", "PT", "RO", "SK", "SI", "ES", "SE"
+    "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI",
+    "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT",
+    "NL", "PL", "PT", "RO", "SE", "SI", "SK"
   )
 
   if (!is.null(country)) {
@@ -43,9 +43,9 @@ get_kohesio_projects <- function(country = NULL) {
 #' @export
 get_kohesio_beneficiaries <- function(country = NULL) {
   countries <- c(
-    "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR",
-    "DE", "EL", "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL",
-    "PL", "PT", "RO", "SK", "SI", "ES", "SE"
+    "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI",
+    "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT",
+    "NL", "PL", "PT", "RO", "SE", "SI", "SK"
   )
 
   if (!is.null(country)) {

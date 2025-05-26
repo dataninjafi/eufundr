@@ -1,0 +1,51 @@
+eufundr
+================
+
+# eufundr
+
+`eufundr` is an R package for downloading and analyzing publicly
+available EU funding data from multiple official sources:
+
+- **Kohesio**: EU Cohesion Policy projects and beneficiaries
+- **FTS**: Financial Transparency System (EU budget expenditures)
+- **CORDIS**: Horizon Europe and Horizon 2020 research funding data
+
+## Installation
+
+``` r
+# install.packages("remotes")
+remotes::install_github("yourusername/eufundr")
+```
+
+## Example Usage
+
+``` r
+library(eufundr)
+
+# Download all data for Finland
+all_data <- get_all_data("FI")
+
+# Access specific parts
+projects <- all_data$kohesio_projects
+beneficiaries <- all_data$kohesio_beneficiaries
+fts <- all_data$fts
+horizon2020 <- all_data$horizon_2020
+horizon_europe <- all_data$horizon_europe
+```
+
+## Vignette
+
+A step-by-step example is available:
+
+``` r
+vignette("eufundr")
+```
+
+## Contributing
+
+Pull requests and issues are welcome! This project follows an open data
+and open science ethos.
+
+## License
+
+MIT © Risto Kaartinen
