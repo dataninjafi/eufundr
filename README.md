@@ -14,7 +14,7 @@ available EU funding data from multiple official sources:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("yourusername/eufundr")
+remotes::install_github("dataninjafi/eufundr")
 ```
 
 ## Example Usage
