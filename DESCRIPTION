@@ -1,0 +1,24 @@
+Package: eufundr
+Title: Tools for Downloading and Processing EU Funding Data
+Version: 0.0.1
+Authors@R: 
+    person("Risto", "Kaartinen", email = "risto.kaartinen@gmail.com", role = c("aut", "cre"))
+Description: Provides functions to download and process data from EU sources such as Kohesio, FTS, and Horizon Europe.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports:
+    readxl,
+    readr,
+    dplyr,
+    stringr,
+    janitor,
+    httr,
+    purrr
+RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+VignetteBuilder: knitr

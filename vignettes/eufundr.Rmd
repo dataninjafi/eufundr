@@ -1,0 +1,49 @@
+---
+title: "Analyzing EU Funding Data with eufundr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Analyzing EU Funding Data with eufundr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+library(eufundr)
+library(dplyr)
+```
+
+## Overview
+
+This vignette demonstrates how to use the `eufundr` package to download and analyze publicly available EU funding data from multiple sources: Kohesio, FTS, Horizon Europe, and Horizon 2020.
+
+## Kohesio Data
+
+```{r}
+fi_projects <- get_kohesio_projects("FI")
+head(fi_projects)
+```
+
+```{r}
+all_beneficiaries <- get_kohesio_beneficiaries()
+head(all_beneficiaries)
+```
+
+## Financial Transparency System (FTS)
+
+```{r}
+fts_fi <- get_all_fts("Finland")
+head(fts_fi)
+```
+
+## Horizon Europe
+
+```{r}
+horizon_fi <- get_horizon_europe("FI")
+head(horizon_fi)
+```
+
+## Horizon 2020
+
+```{r}
+h2020_fi <- get_horizon_2020("FI")
+head(h2020_fi)
