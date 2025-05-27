@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   eufundr: eufundr.html
-last_built: 2025-05-26T13:04Z
+last_built: 2025-05-27T08:09Z
 urls:
   reference: https://dataninjafi.github.io/eufundr/reference
   article: https://dataninjafi.github.io/eufundr/articles

@@ -3,6 +3,8 @@ title: "eufundr"
 output: github_document
 ---
 
+![eufundr logo](man/figures/eufundr.png)
+
 # eufundr
 
 `eufundr` is an R package for downloading and analyzing publicly available EU funding data from multiple official sources:

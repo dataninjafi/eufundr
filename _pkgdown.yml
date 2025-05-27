@@ -1,4 +1,9 @@
+home:
+  title: eufundr
+  logo: man/figures/eufundr.png
+
 url: https://dataninjafi.github.io/eufundr/
+favicon: pkgdown/favicon.png
 template:
   bootstrap: 5
 

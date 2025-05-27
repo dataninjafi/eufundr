@@ -1,6 +1,11 @@
 eufundr
 ================
 
+<figure>
+<img src="man/figures/eufundr.png" alt="eufundr logo" />
+<figcaption aria-hidden="true">eufundr logo</figcaption>
+</figure>
+
 # eufundr
 
 `eufundr` is an R package for downloading and analyzing publicly
