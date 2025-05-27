@@ -3,7 +3,7 @@ title: "eufundr"
 output: github_document
 ---
 
-![eufundr logo](man/figures/eufundr.png)
+![](man/figures/eufundr.png)
 
 # eufundr
 
