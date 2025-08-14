@@ -21,12 +21,13 @@ get_kohesio_projects <- function(country = NULL) {
     countries <- country
   }
 
-  # Luodaan URL-osoitteet molemmille ajanjaksoille
-  urls_21_27 <- paste0("https://kohesio.ec.europa.eu/en/data/programmingPeriod20212027/latest_", countries, "-21-27.xlsx")
-  urls_14_20 <- paste0("https://kohesio.ec.europa.eu/en/data/programmingPeriod20142020/latest_", countries, "-14-20.xlsx")
+
 
   # Yhdistetään URL-osoitteet
-  all_urls <- c(urls_21_27, urls_14_20)
+  all_urls <- paste0('https://kohesio.ec.europa.eu/api/data/object?id=data/projects/latest_',
+                     countries,
+                     c("-21-27.xlsx", "-14-20.xlsx"))
+
 
   # Ladataan ja käsitellään dataa
   data_list <- purrr::map(all_urls, function(url) {
