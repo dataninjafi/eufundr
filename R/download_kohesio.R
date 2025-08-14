@@ -5,14 +5,12 @@
 #' @return A tibble of projects with cleaned column names
 #' @export
 get_kohesio_projects <- function(country = NULL) {
-  # Lista maista, joille dataa on saatavilla
   countries <- c(
     "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI",
     "FR", "GR", "HR", "HU", "IE", "IT", "LT", "LU", "LV", "MT",
     "NL", "PL", "PT", "RO", "SE", "SI", "SK"
   )
 
-  # Tarkistetaan, onko annettu maa-koodi tuettu
   if (!is.null(country)) {
     country <- toupper(country)
     if (!country %in% countries) {
@@ -21,53 +19,33 @@ get_kohesio_projects <- function(country = NULL) {
     countries <- country
   }
 
+  urls <- paste0(
+    "https://kohesio.ec.europa.eu/api/data/object?id=data/projects/latest_",
+    rep(countries, each = 2),
+    c("-21-27.xlsx", "-14-20.xlsx")
+  )
 
+  data_list <- purrr::map2(
+    urls,
+    rep(countries, each = 2),
+    function(url, ctry) {
+      # Check if file exists (HEAD request)
+      resp <- try(httr::HEAD(url, httr::timeout(10)), silent = TRUE)
+      if (inherits(resp, "try-error") || httr::status_code(resp) != 200) {
+        message("Skipping: ", url, " (not available)")
+        return(NULL)
+      }
 
-  # Yhdistetään URL-osoitteet
-  all_urls <- paste0('https://kohesio.ec.europa.eu/api/data/object?id=data/projects/latest_',
-                     countries,
-                     c("-21-27.xlsx", "-14-20.xlsx"))
-
-
-  # Ladataan ja käsitellään dataa
-  data_list <- purrr::map(all_urls, function(url) {
-    # Yritetään ladata tiedosto ja käsitellään virhetilanteet
-    tryCatch({
       dest <- tempfile(fileext = ".xlsx")
       download.file(url, dest, mode = "wb", quiet = TRUE)
+      readxl::read_excel(dest) %>%
+        janitor::clean_names() %>%
+        dplyr::mutate(country = ctry)
+    }
+  )
 
-      # Tarkistetaan, onko ladattu tiedosto olemassa
-      if (file.exists(dest)) {
-        # Määritetään maa ja ajanjakso URL:n perusteella
-        country_code <- toupper(sub(".*latest_([A-Z]+)-.*", "\\1", url))
-        period_code <- sub(".*latest_.*-([0-9]+)-([0-9]+).*", "\\1-\\2", url)
-
-        # Luetaan data ja muokataan se sopivaan muotoon
-        readxl::read_excel(dest) %>%
-          janitor::clean_names() %>%
-          dplyr::mutate(country = country_code, period = period_code)
-      } else {
-        # Palautetaan NULL, jos tiedostoa ei löydy
-        NULL
-      }
-    }, error = function(e) {
-      # Jos lataus epäonnistuu, tulostetaan virhe ja palautetaan NULL
-      message(paste("Failed to download or read:", url, " - Error:", e$message))
-      NULL
-    })
-  })
-
-  # Poistetaan NULL-arvot listasta
-  data_list <- data_list[!sapply(data_list, is.null)]
-
-  # Yhdistetään datat ja palautetaan tulos
-  if (length(data_list) > 0) {
-    dplyr::bind_rows(data_list)
-  } else {
-    # Palautetaan tyhjä data-frame, jos yhtään tiedostoa ei voitu ladata
-    message("No data could be retrieved for the specified country/countries.")
-    dplyr::tibble()
-  }
+  # Drop NULL entries (skipped files) and combine
+  dplyr::bind_rows(Filter(Negate(is.null), data_list))
 }
 
 #' Download and load Kohesio beneficiary data
