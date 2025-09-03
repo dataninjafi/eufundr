@@ -40,7 +40,7 @@ get_kohesio_projects <- function(country = NULL) {
       download.file(url, dest, mode = "wb", quiet = TRUE)
       readxl::read_excel(dest) %>%
         janitor::clean_names() %>%
-        dplyr::mutate(country = ctry)
+        dplyr::mutate(country = country)
     }
   )
 
