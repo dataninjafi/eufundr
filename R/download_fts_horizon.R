@@ -5,8 +5,9 @@
 #' @return A tibble of filtered and cleaned FTS data
 #' @export
 get_fts_data <- function(year, country = NULL) {
-  stopifnot(year %in% 2007:2023)
-  url <- sprintf("https://ec.europa.eu/budget/fts/excel/FTS_dataset_en_%d.xlsx", year)
+  stopifnot(year %in% 2007:2024)
+
+  url <- sprintf("https://ec.europa.eu/budget/financial-transparency-system/download/%d_FTS_dataset_en.xlsx", year)
   dest <- tempfile(fileext = ".xlsx")
   download.file(url, dest, mode = "wb", quiet = TRUE)
 
@@ -32,7 +33,7 @@ get_fts_data <- function(year, country = NULL) {
 #' @return A combined tibble of FTS data for all years
 #' @export
 get_all_fts <- function(country = NULL) {
-  purrr::map_dfr(2007:2023, ~get_fts_data(.x, country))
+  purrr::map_dfr(2007:2024, ~get_fts_data(.x, country))
 }
 
 #' Load Horizon Europe data

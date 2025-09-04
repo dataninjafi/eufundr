@@ -9,6 +9,7 @@ get_all_data <- function(country = NULL) {
     kohesio_beneficiaries = get_kohesio_beneficiaries(country),
     fts                  = get_all_fts(country),
     horizon_2020         = get_horizon_2020(country),
-    horizon_europe       = get_horizon_europe(country)
+    horizon_europe       = get_horizon_europe(country),
+    interreg  = get_interreg_data(country)
   )
 }

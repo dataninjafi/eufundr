@@ -14,7 +14,9 @@ Imports:
     stringr,
     janitor,
     httr,
-    purrr
+    httr2,
+    purrr,
+    tibble
 RoxygenNote: 7.3.2
 Suggests: 
     knitr,
