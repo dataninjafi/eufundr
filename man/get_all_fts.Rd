@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_fts_horizon.R
 \name{get_all_fts}
 \alias{get_all_fts}
-\title{Get all available FTS data combined (2007–2023)}
+\title{Get all available FTS data combined}
 \usage{
 get_all_fts(country = NULL)
 }
@@ -13,5 +13,5 @@ get_all_fts(country = NULL)
 A combined tibble of FTS data for all years
 }
 \description{
-Get all available FTS data combined (2007–2023)
+Get all available FTS data combined
 }

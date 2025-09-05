@@ -59,13 +59,13 @@ get_horizon_europe <- function(country = NULL){
   url <- "https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip"
   download.file(url, zipfile, mode = "wb", quiet = TRUE)
 
-  projects <- read_csv2(unz(zipfile, "project.csv"))
+  projects <- readr::read_csv2(unz(zipfile, "project.csv"))
   # %>%
   #   dplyr::select(projectID = id, hankenimi = title, toteutuneet_maksut = totalCost,
   #                 rahasto = frameworkProgramme, kuvaus = objective,
   #                 aloitusp = startDate, lopetusp = endDate)
 
-  organizations <- read_csv2(unz(zipfile, "organization.csv"))
+  organizations <- readr::read_csv2(unz(zipfile, "organization.csv"))
 
   if (!is.null(country)) organizations <- filter(organizations, country %in% country_filter)
 

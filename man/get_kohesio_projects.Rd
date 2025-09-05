@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_kohesio.R
 \name{get_kohesio_projects}
 \alias{get_kohesio_projects}
-\title{Download and load Kohesio project data}
+\title{Download and load Kohesio project data (CSV version, direct read)}
 \usage{
 get_kohesio_projects(country = NULL)
 }
@@ -13,5 +13,5 @@ get_kohesio_projects(country = NULL)
 A tibble of projects with cleaned column names
 }
 \description{
-Downloads project data from the Kohesio API. By default, retrieves data from all EU countries.
+Downloads project data from the Kohesio API in CSV format. By default, retrieves data from all EU countries.
 }

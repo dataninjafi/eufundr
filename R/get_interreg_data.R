@@ -24,8 +24,8 @@ get_interreg_data <- function(country = NULL) {
 
   outfile <- "Project_search_results_keep_eu.xlsx"
 
-  req <- request(url) |>
-    req_headers(
+  req <- httr2::request(url) |>
+    httr2::req_headers(
       "Accept" = "*/*",
       "Content-Type" = "application/json",
       # Nämä eivät yleensä ole pakollisia, mutta matkivat selainta:
@@ -35,10 +35,10 @@ get_interreg_data <- function(country = NULL) {
       # Jos palvelu vaatii session, lisää tarvittaessa:
       # "Cookie" = "PHPSESSID=hofa3qvtqga3tf4o040j4ne486"
     ) |>
-    req_body_raw(charToRaw(payload_json), type = "application/json") |>
+    httr2::req_body_raw(charToRaw(payload_json), type = "application/json") |>
     # req_body_raw(charToRaw(payload_json), type = "application/json") |>
-    req_method("POST") |>
-    req_timeout(300)
+    httr2::req_method("POST") |>
+    httr2::req_timeout(300)
 
   resp <- req_perform(req)
 

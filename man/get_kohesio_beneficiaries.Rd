@@ -2,7 +2,7 @@
 % Please edit documentation in R/download_kohesio.R
 \name{get_kohesio_beneficiaries}
 \alias{get_kohesio_beneficiaries}
-\title{Download and load Kohesio beneficiary data}
+\title{Download and load Kohesio beneficiary data (CSV direct read)}
 \usage{
 get_kohesio_beneficiaries(country = NULL)
 }

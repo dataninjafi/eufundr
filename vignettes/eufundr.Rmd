@@ -18,41 +18,42 @@ This vignette demonstrates how to use the `eufundr` package to download and anal
 
 ## Kohesio Data
 
-```{r}
+```{r eval=FALSE}
 fi_projects <- get_kohesio_projects("FI")
 head(fi_projects)
 ```
 
-```{r}
+```{r eval=FALSE}
 fi_beneficiaries <- get_kohesio_beneficiaries("FI")
 head(fi_beneficiaries)
 ```
 
 ## Financial Transparency System (FTS)
 
-```{r}
+```{r eval=FALSE}
 fts_fi <- get_all_fts("Finland")
 head(fts_fi)
 ```
 
 ## Horizon Europe
 
-```{r}
+```{r eval=FALSE}
 horizon_fi <- get_horizon_europe("FI")
 head(horizon_fi)
 ```
 
 ## Horizon 2020
 
-```{r}
+```{r eval=FALSE}
 h2020_fi <- get_horizon_2020("FI")
 head(h2020_fi)
 ```
 
 ## Interreg
 
-```{r}
-interreg_fi <- get_interreg_data("FI")
+
+
+```{r eval=FALSE}
+interreg_fi = get_horizon_2020("FI")
 head(interreg_fi)
 ```
-
