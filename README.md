@@ -33,6 +33,7 @@ beneficiaries <- all_data$kohesio_beneficiaries
 fts <- all_data$fts
 horizon2020 <- all_data$horizon_2020
 horizon_europe <- all_data$horizon_europe
+interreg <- all_data$interreg
 ```
 
 ## Vignette
