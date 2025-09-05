@@ -48,3 +48,11 @@ head(horizon_fi)
 h2020_fi <- get_horizon_2020("FI")
 head(h2020_fi)
 ```
+
+## Interreg
+
+```{r}
+interreg_fi <- get_interreg_data("FI")
+head(interreg_fi)
+```
+

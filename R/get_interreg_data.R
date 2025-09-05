@@ -1,5 +1,6 @@
 get_interreg_data <- function(country = NULL) {
 
+  country_filter = enrich_eu_country_info(country)
 
   url <- "https://keep.eu/api/search/projects/"
 
@@ -52,15 +53,15 @@ get_interreg_data <- function(country = NULL) {
 
   if (!is.null(country)){
     partners <-  partners %>%
-      filter(country_code %in% country_code)
-
-    projects <- projects %>%
-      semi_join(
-        partners %>%
-          select(project_acronym) %>%
-          distinct
-      )
+      filter(country_code %in% country_filter)
   }
+
+  projects <- projects %>%
+    semi_join(
+      partners %>%
+        select(project_acronym) %>%
+        distinct
+    )
 
   return(list(partners = partners, projects = projects))
 

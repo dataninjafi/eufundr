@@ -15,6 +15,7 @@ Imports:
     janitor,
     httr,
     httr2,
+    countrycode,
     purrr,
     tibble
 RoxygenNote: 7.3.2

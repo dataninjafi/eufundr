@@ -25,17 +25,27 @@ get_kohesio_projects <- function(country = NULL) {
     c("-21-27.xlsx", "-14-20.xlsx")
   )
 
+  # Check if file exists (HEAD request)
+  urls = map(urls,
+      function(url){
+        resp <- try(httr::HEAD(url, httr::timeout(2)), silent = TRUE)
+        if (inherits(resp, "try-error") || httr::status_code(resp) != 200) {
+          message("Skipping: ", url, " (not available)")
+          return(NA)
+        }
+        url
+      }
+      ) %>%
+    flatten_chr() %>%
+    .[!is.na(.)]
+
+
+
+
   data_list <- purrr::map2(
     urls,
-    rep(countries, each = 2),
+    str_extract(urls, '[A-Z]{2}'),
     function(url, ctry) {
-      # Check if file exists (HEAD request)
-      resp <- try(httr::HEAD(url, httr::timeout(10)), silent = TRUE)
-      if (inherits(resp, "try-error") || httr::status_code(resp) != 200) {
-        message("Skipping: ", url, " (not available)")
-        return(NULL)
-      }
-
       dest <- tempfile(fileext = ".xlsx")
       download.file(url, dest, mode = "wb", quiet = TRUE)
       readxl::read_excel(dest) %>%
