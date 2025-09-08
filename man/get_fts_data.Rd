@@ -7,7 +7,7 @@
 get_fts_data(year, country = NULL)
 }
 \arguments{
-\item{year}{An integer year between 2007 and 2023}
+\item{year}{An integer year between 2007 and 2024}
 
 \item{country}{Optional beneficiary country name (e.g., "Finland"). If NULL, includes all countries.}
 }

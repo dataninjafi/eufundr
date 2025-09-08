@@ -1,10 +1,33 @@
+#' Retrieve Interreg project data from keep.eu API
+#'
+#' This function sends a POST request to the [keep.eu](https://keep.eu) API and downloads an Excel file containing data on Interreg projects and their partners.
+#' The results can be filtered by country if specified.
+#'
+#' @param country A character string or vector indicating the country name(s) or code(s) to filter results by.
+#'   If `NULL`, data for all countries is returned.
+#'
+#' @return A list with two elements:
+#' \describe{
+#'   \item{partners}{A tibble containing partner data, optionally filtered by country.}
+#'   \item{projects}{A tibble containing project data linked to the filtered partners.}
+#' }
+#'
+#' @examples
+#' \dontrun{
+#'   # Retrieve all projects and partners
+#'   data <- get_interreg_data()
+#'
+#'   # Retrieve only projects related to Finland
+#'   data <- get_interreg_data(country = "Finland")
+#' }
+#'
+#' @export
 get_interreg_data <- function(country = NULL) {
 
-  country_filter = enrich_eu_country_info(country)
+  country_filter <- enrich_eu_country_info(country)
 
   url <- "https://keep.eu/api/search/projects/"
 
-  # Sama payload kuin Chromen 'Request payload' -kohdassa
   payload_json <- '{
   "projects":{"status":null,"prizes":false,"only_projects_with_documents":false,"project_details":{"start":[],"without_start":false,"end":[],"without_end":false},"project_budget":{"range":[],"without_budget":false},"themes":{"list":[],"type":"or"},"macro_regional_strategies":[],"only_infrastructure_financed":false},
   "programmes":{"type":[],"period":[],"available":[]},
@@ -22,8 +45,6 @@ get_interreg_data <- function(country = NULL) {
   "response_type":"excel"
 }'
 
-  outfile <- "Project_search_results_keep_eu.xlsx"
-
   req <- httr2::request(url) |>
     httr2::req_headers(
       "Accept" = "*/*",
@@ -32,44 +53,34 @@ get_interreg_data <- function(country = NULL) {
       "Origin"  = "https://keep.eu",
       "Referer" = "https://keep.eu/projects/?hide-sidebar=true",
       "User-Agent" = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
-      # Jos palvelu vaatii session, lisää tarvittaessa:
-      # "Cookie" = "PHPSESSID=hofa3qvtqga3tf4o040j4ne486"
     ) |>
     httr2::req_body_raw(charToRaw(payload_json), type = "application/json") |>
-    # req_body_raw(charToRaw(payload_json), type = "application/json") |>
     httr2::req_method("POST") |>
     httr2::req_timeout(300)
 
-  resp <- req_perform(req)
+  resp <- httr2::req_perform(req)
 
   tmpfile <- tempfile(fileext = ".xlsx")
-  writeBin(resp_body_raw(resp), tmpfile)
+  writeBin(httr2::resp_body_raw(resp), tmpfile)
 
-  projects <- read_excel(tmpfile, sheet = 2) %>%
-    clean_names()
+  projects <- readxl::read_excel(tmpfile, sheet = 2) |>
+    janitor::clean_names()
 
-  partners <- read_excel(tmpfile, sheet = 3) %>%
-    clean_names()
+  partners <- readxl::read_excel(tmpfile, sheet = 3) |>
+    janitor::clean_names()
 
-  if (!is.null(country)){
-    partners <-  partners %>%
-      filter(country_code %in% country_filter)
+  if (!is.null(country)) {
+    partners <- partners |>
+      dplyr::filter(country_code %in% country_filter)
   }
 
-  projects <- projects %>%
-    semi_join(
-      partners %>%
-        select(project_acronym) %>%
-        distinct
+  projects <- projects |>
+    dplyr::semi_join(
+      partners |>
+        dplyr::select(project_acronym) |>
+        dplyr::distinct(),
+      by = "project_acronym"
     )
 
-  return(list(partners = partners, projects = projects))
-
-
-
+  list(partners = partners, projects = projects)
 }
-
-
-
-
-

@@ -6,7 +6,6 @@ Authors@R:
 Description: Provides functions to download and process data from EU sources such as Kohesio, FTS, and Horizon Europe.
 License: MIT
 Encoding: UTF-8
-LazyData: true
 Imports:
     readxl,
     readr,

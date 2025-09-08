@@ -16,10 +16,10 @@
 #'
 #' @export
 enrich_eu_country_info <- function(country) {
-  countrycode::codelist %>%
-    filter(!is.na(eu28)) %>%
-    select(country.name.en, iso2c) %>%
-    filter(country.name.en %in% country | iso2c %in% country) %>%
+  countrycode::codelist |>
+    dplyr::filter(!is.na(eu28)) |>
+    dplyr::select(country.name.en, iso2c) |>
+    dplyr::filter(country.name.en %in% country | iso2c %in% country) |>
     unlist(use.names = FALSE)
 }
 

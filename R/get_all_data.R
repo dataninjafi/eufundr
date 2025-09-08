@@ -7,9 +7,9 @@ get_all_data <- function(country = NULL) {
   list(
     kohesio_projects     = get_kohesio_projects(country),
     kohesio_beneficiaries = get_kohesio_beneficiaries(country),
-    fts                  = get_all_fts(country),
-    horizon_2020         = get_horizon_2020(country),
-    horizon_europe       = get_horizon_europe(country),
+    fts = purrr::map(2007:2024, function(x) get_fts_data(x, country)) |>
+      dplyr::bind_rows(),
+    horizon         = get_horizon_data(country = country),
     interreg  = get_interreg_data(country)
   )
 }

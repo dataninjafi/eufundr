@@ -32,17 +32,17 @@ get_kohesio_projects <- function(country = NULL){
       return(NA)
     }
     url
-  }) %>%
-    purrr::flatten_chr() %>%
-    .[!is.na(.)]
+  }) |>
+    purrr::flatten_chr() |>
+    (\(x) x[!is.na(x)])()
 
   data_list <- purrr::map2(
     urls,
     stringr::str_extract(urls, '[A-Z]{2}'),
     function(url, ctry) {
       tryCatch({
-        readr::read_csv(url, col_types = readr::cols(.default = "c")) %>%
-          janitor::clean_names() %>%
+        readr::read_csv(url, col_types = readr::cols(.default = "c")) |>
+          janitor::clean_names() |>
           dplyr::mutate(country = ctry)
       }, error = function(e) {
         message("Failed to read: ", url)
@@ -82,8 +82,8 @@ get_kohesio_beneficiaries <- function(country = NULL) {
     urls, countries,
     function(url, ctry) {
       tryCatch({
-        readr::read_csv(url, col_types = readr::cols(.default = "c")) %>%
-          janitor::clean_names() %>%
+        readr::read_csv(url, col_types = readr::cols(.default = "c")) |>
+          janitor::clean_names() |>
           dplyr::mutate(country = ctry)
       }, error = function(e) {
         message("Failed to read: ", url)
