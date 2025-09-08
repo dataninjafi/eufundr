@@ -77,8 +77,7 @@ get_horizon_data <- function(programme = c("HORIZON", "h2020"), country = NULL) 
   # Join datasets and return result
   projects |>
     dplyr::rename(projectID = id) |>
-    dplyr::inner_join(organizations, by = "projectID") |>
-    dplyr::select(-projectID)
+    dplyr::inner_join(organizations, by = "projectID")
 }
 
 
