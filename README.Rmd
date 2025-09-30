@@ -7,13 +7,24 @@ output: github_document
 
 # eufundr
 
-`eufundr` is an R package for downloading and analyzing publicly available EU funding data from multiple official sources:
+`eufundr` is an R package for downloading publicly available EU funding data from multiple official sources:
 
-- **Kohesio**: EU Cohesion Policy projects and beneficiaries
-- **FTS**: Financial Transparency System (EU budget expenditures)
+- **Kohesio**: EU Cohesion Policy projects and beneficiaries. https://kohesio.ec.europa.eu/en/data
+- **FTS**: Financial Transparency System (EU budget expenditures) https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data
 - **CORDIS**: Horizon Europe and Horizon 2020 research funding data
+https://cordis.europa.eu/projects
+- **Interreg**: keep.eu contains data on Interreg and IPA-IPA cross-border projects that have been approved and contracted and it also includes projects from other EU instruments or funds that contribute to macro-regional strategies (up to 2020). 
+
+This package uses the data as it is served on the web page or API. Also the documentation
+of the data should be 
+
+One use case for such data is to explore if a beneficiary is double funded. One
+can explore company ids, company names or project names from the data. 
 
 ## Installation
+
+In order to use package you need R version 4.1 or newer and remotes-package
+installed.
 
 ```r
 # install.packages("remotes")
@@ -35,6 +46,26 @@ fts <- all_data$fts
 horizon2020 <- all_data$horizon_2020
 horizon_europe <- all_data$horizon_europe
 interreg <- all_data$interreg
+
+# Download only certain country and sources
+
+## Get Greek kohesio projects
+ kohesio_projects = get_kohesio_projects(country = "GR")
+
+## Get Romanian beneficiaries
+    
+kohesio_beneficiaries = get_kohesio_beneficiaries(country = "RO")
+
+## Get Dutch FTS data for year 2024
+fts = get_fts_data(year = 2024, country =  "NL")
+
+## Get Swedish Horizon data
+horizon = get_horizon_data(programme = "HORIZON", country = "SE")
+
+## Get Danish h2020 data
+get_horizon_data(programme = "h2020", country = "DK")
+
+
 ```
 
 ## Vignette

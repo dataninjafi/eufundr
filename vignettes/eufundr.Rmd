@@ -14,46 +14,66 @@ library(dplyr)
 
 ## Overview
 
-This vignette demonstrates how to use the `eufundr` package to download and analyze publicly available EU funding data from multiple sources: Kohesio, FTS, Horizon Europe, and Horizon 2020.
+This vignette demonstrates how to use the `eufundr` package to download and publicly available EU funding data from multiple sources
 
-## Kohesio Data
+##  Download all data for Finland from all sources
 
 ```{r eval=FALSE}
-fi_projects <- get_kohesio_projects("FI")
-head(fi_projects)
+all_data <- get_all_data("FI")
+
 ```
 
+Access specific parts
+
 ```{r eval=FALSE}
-fi_beneficiaries <- get_kohesio_beneficiaries("FI")
-head(fi_beneficiaries)
+
+projects <- all_data$kohesio_projects
+beneficiaries <- all_data$kohesio_beneficiaries
+fts <- all_data$fts
+horizon2020 <- all_data$horizon_2020
+horizon_europe <- all_data$horizon_europe
+interreg <- all_data$interreg
+
 ```
 
-## Financial Transparency System (FTS)
+
+
+
+
+## Download only certain country and sources
+
+Get Greek kohesio projects
 
 ```{r eval=FALSE}
-fts_fi <- get_all_fts("Finland")
-head(fts_fi)
+kohesio_projects = get_kohesio_projects(country = "GR")
 ```
 
-## Horizon Europe
+Get Romanian kohesio beneficiaries
 
 ```{r eval=FALSE}
-horizon_fi <- get_horizon_europe("FI")
-head(horizon_fi)
+kohesio_beneficiaries = get_kohesio_beneficiaries(country = "RO")
 ```
 
-## Horizon 2020
+ Get Dutch FTS data for year 2024
 
 ```{r eval=FALSE}
-h2020_fi <- get_horizon_2020("FI")
-head(h2020_fi)
+fts = get_fts_data(year = 2024, country =  "NL")
 ```
 
-## Interreg
-
-
+Get Swedish Horizon data
 
 ```{r eval=FALSE}
-interreg_fi = get_horizon_2020("FI")
-head(interreg_fi)
+horizon = get_horizon_data(programme = "HORIZON", country = "SE")
+```
+
+Get Danish h2020 data
+
+```{r eval=FALSE}
+h2020 = get_horizon_data(programme = "h2020", country = "DK")
+```
+
+Get German interreg data
+
+```{r eval=FALSE}
+interreg = get_interreg_data(country = "DE")
 ```
