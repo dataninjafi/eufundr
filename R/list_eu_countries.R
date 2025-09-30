@@ -18,8 +18,9 @@
 enrich_eu_country_info <- function(country) {
   countrycode::codelist |>
     dplyr::filter(!is.na(eu28)) |>
-    dplyr::select(country.name.en, iso2c) |>
+    dplyr::select(country.name.en, iso2c, eurostat) |>
     dplyr::filter(country.name.en %in% country | iso2c %in% country) |>
-    unlist(use.names = FALSE)
+    unlist(use.names = FALSE) |>
+    unique()
 }
 
