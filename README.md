@@ -20,11 +20,12 @@ data from multiple official sources:
   contribute to macro-regional strategies (up to 2020).
 
 This package uses the data as it is served on the web page or API. Also
-the documentation of the data should be
+the documentation of the data should be somewhere on these web pages.
 
-One use case for such data is to explore if a beneficiary is double
-funded. One can explore company ids, company names or project names from
-the data.
+One use case for this data is to explore if a beneficiary is double
+funded. One can explore company ids, company names, project names and
+project descriptions from the data: For what purpose did a company
+receive data.
 
 ## Installation
 
@@ -70,14 +71,6 @@ horizon = get_horizon_data(programme = "HORIZON", country = "SE")
 ## Get Danish h2020 data
 get_horizon_data(programme = "h2020", country = "DK")
 
-```
-
-## Vignette
-
-A step-by-step example is available:
-
-``` r
-vignette("eufundr")
 ```
 
 ## Contributing
