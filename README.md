@@ -22,10 +22,12 @@ data from multiple official sources:
 This package uses the data as it is served on the web page or API. Also
 the documentation of the data should be somewhere on these web pages.
 
-One use case for this data is to explore if a beneficiary is double
-funded. One can explore company ids, company names, project names and
-project descriptions from the data: For what purpose did a company
-receive data.
+One use case for this tool is to download data for further exploration
+if a beneficiary (company, organization) is double funded. One can
+explore company ids, company names, project names and project
+descriptions from the data. Data can answer questions like “For what
+purpose did a company receive data? What companies received grants and
+for what purposes?”
 
 ## Installation
 
