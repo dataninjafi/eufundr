@@ -69,7 +69,10 @@ fts = get_fts_data(year = 2024, country =  "NL")
 horizon = get_horizon_data(programme = "HORIZON", country = "SE")
 
 ## Get Danish h2020 data
-get_horizon_data(programme = "h2020", country = "DK")
+h2020 = get_horizon_data(programme = "h2020", country = "DK")
+
+## Get Portugese interreg data
+interreg = get_interreg_data(country = "PT")
 
 ```
 
