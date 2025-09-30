@@ -23,11 +23,12 @@ This package uses the data as it is served on the web page or API. Also
 the documentation of the data should be somewhere on these web pages.
 
 One use case for this **data loading tool** is to download data for
-further exploration if a beneficiary (company, organization) is double
-funded. One can explore company ids, company names, project names and
-project descriptions from the data. Data can answer questions like “For
-what purpose did a company receive data? What companies received grants
-and for what purposes?”
+further exploration, for example, to check whether a beneficiary
+(company or organization) is double-funded. Users can explore company
+IDs, company names, project names, and project descriptions from the
+dataset. The data can help answer questions such as: ‘For what purpose
+did a company receive funding?’ or ‘Which companies received grants, and
+for what purposes?’
 
 ## Installation
 
