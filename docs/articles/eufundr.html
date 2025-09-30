@@ -63,243 +63,44 @@
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
 <p>This vignette demonstrates how to use the <code>eufundr</code>
-package to download and analyze publicly available EU funding data from
-multiple sources: Kohesio, FTS, Horizon Europe, and Horizon 2020.</p>
+package to download and publicly available EU funding data from multiple
+sources</p>
 </div>
 <div class="section level2">
-<h2 id="kohesio-data">Kohesio Data<a class="anchor" aria-label="anchor" href="#kohesio-data"></a>
+<h2 id="download-all-data-for-finland-from-all-sources">Download all data for Finland from all sources<a class="anchor" aria-label="anchor" href="#download-all-data-for-finland-from-all-sources"></a>
 </h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fi_projects</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_kohesio_projects.html">get_kohesio_projects</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG1348 / R1348C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4144.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI1348 / R1348C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/open-innovation-platforms-for-finlands-media-industry_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG1494 / R1494C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4377.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI1494 / R1494C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/sustainability-competitiveness-and-business-growth-in-industry-and-mining-in-lapland_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG1958 / R1958C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/5101.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI1958 / R1958C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/bringing-innovation-to-hospital-healthcare-in-southern-finland_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG2002 / R2002C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4458.png'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI2002 / R2002C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/helping-young-people-develop-professional-it-skills-in-central-ostrobothnia-finland_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG3185 / R3185C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4915.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI3185 / R3185C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/new-testing-platform-helps-modernise-healthcare-in-finland-and-beyond_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG4260 / R4260C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/auto2020.png'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI4260 / R4260C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/auto2020-finland-trains-students-for-world-of-zero-emission-transport_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG5489 / R5489C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/5125.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI5489 / R5489C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/lahti-fringe-festival-brings-artists-from-around-the-world-to-finland_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG5708 / R5708C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4252.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI5708 / R5708C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/n2-project-is-starting-up-in-south-west-finland_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG6082 / R6082C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/5040.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI6082 / R6082C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/preventing-homelessness-in-finlands-cities_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG9318 / R9318C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4169.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI9318 / R9318C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/low-carbon-life-in-finland_en'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AG9921 / R9921C33: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/rest/projects/upload/4697.jpg'</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: Expecting logical in AI9921 / R9921C35: got</span></span>
-<span><span class="co">## 'https://ec.europa.eu/regional_policy/projects/projects-database/suomessa-leikataan-paastoja-katu-kerrallaan_en'</span></span></code></pre>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fi_projects</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 6 × 35</span></span></span>
-<span><span class="co">##   operation_unique_identifier      operation_local_iden…¹ operation_name_english</span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                 </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> https://linkedopendata.eu/entit… A73439                 A new kind of direct …</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> https://linkedopendata.eu/entit… A77235                 Cleanliness — Interac…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">3</span> https://linkedopendata.eu/entit… A76229                 Construction of produ…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">4</span> https://linkedopendata.eu/entit… GENERATED-ID-2021FI16… Contribution to devel…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">5</span> https://linkedopendata.eu/entit… A70994                 Development and evalu…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">6</span> https://linkedopendata.eu/entit… A77559                 Renewable Energy Heat…</span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ abbreviated name: ¹​operation_local_identifier</span></span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 32 more variables: operation_name_programme_language &lt;chr&gt;, country &lt;chr&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   postal_code &lt;dbl&gt;, operation_start_date &lt;chr&gt;, operation_end_date &lt;chr&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   cofinancing_rate &lt;dbl&gt;, total_eligible_expenditure_amount &lt;dbl&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   total_eligible_expenditure_currency &lt;chr&gt;, project_eu_budget &lt;dbl&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   beneficiary_unique_identifier &lt;chr&gt;,</span></span></span>
-<span><span class="co">## <span style="color: #949494;">#   location_indicator_latitude_longitude &lt;chr&gt;, …</span></span></span></code></pre>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fi_beneficiaries</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_kohesio_beneficiaries.html">get_kohesio_beneficiaries</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fi_beneficiaries</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##                                 beneficiary             beneficiary_label</span></span>
-<span><span class="co">## 1 https://linkedopendata.eu/entity/Q3765452               BELLANPUISTO OY</span></span>
-<span><span class="co">## 2 https://linkedopendata.eu/entity/Q3766059              PROCADME TEAM OY</span></span>
-<span><span class="co">## 3 https://linkedopendata.eu/entity/Q3765157            VILLA GOLF-RUKA OY</span></span>
-<span><span class="co">## 4 https://linkedopendata.eu/entity/Q3761198                ST HEIKKILÄ OY</span></span>
-<span><span class="co">## 5 https://linkedopendata.eu/entity/Q3760472          FICONIC SOLUTIONS OY</span></span>
-<span><span class="co">## 6 https://linkedopendata.eu/entity/Q3769716 Suomen Setlementtiliitto r.y.</span></span>
-<span><span class="co">##   website wikidata_id country</span></span>
-<span><span class="co">## 1                          FI</span></span>
-<span><span class="co">## 2                          FI</span></span>
-<span><span class="co">## 3                          FI</span></span>
-<span><span class="co">## 4                          FI</span></span>
-<span><span class="co">## 5                          FI</span></span>
-<span><span class="co">## 6                          FI</span></span></code></pre>
+<code class="sourceCode R"><span><span class="va">all_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_data.html">get_all_data</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span></code></pre></div>
+<p>Access specific parts</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">projects</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">kohesio_projects</span></span>
+<span><span class="va">beneficiaries</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">kohesio_beneficiaries</span></span>
+<span><span class="va">fts</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">fts</span></span>
+<span><span class="va">horizon2020</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_2020</span></span>
+<span><span class="va">horizon_europe</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_europe</span></span>
+<span><span class="va">interreg</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">interreg</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="financial-transparency-system-fts">Financial Transparency System (FTS)<a class="anchor" aria-label="anchor" href="#financial-transparency-system-fts"></a>
+<h2 id="download-only-certain-country-and-sources">Download only certain country and sources<a class="anchor" aria-label="anchor" href="#download-only-certain-country-and-sources"></a>
 </h2>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fts_fi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_fts.html">get_all_fts</a></span><span class="op">(</span><span class="st">"Finland"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2007 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b883ef4408b.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2008 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b882180664.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2009 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88559d6eb2.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2010 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b884de334ef.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2011 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88261e30c.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2012 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b8830851a40.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2013 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b889ca6b6b.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2014 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88527b6365.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2015 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88608712f2.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2016 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b8811ed5736.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2017 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b8871dded7.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2018 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b882bca938.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2019 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88644c868.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2020 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88dba33c1.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2021 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b883ee384c.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2022 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b884557d5d.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<pre><code><span><span class="co">## Warning in value[[3L]](cond): Skipping year 2023 due to read error: zip file</span></span>
-<span><span class="co">## 'C:\Users\03262799\AppData\Local\Temp\Rtmpc3xVZd\file5b88290e70c.xlsx' cannot</span></span>
-<span><span class="co">## be opened</span></span></code></pre>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">fts_fi</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 0 × 0</span></span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="horizon-europe">Horizon Europe<a class="anchor" aria-label="anchor" href="#horizon-europe"></a>
-</h2>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">horizon_fi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_horizon_europe.html">get_horizon_europe</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Using <span style="color: #0000BB;">"','"</span> as decimal and <span style="color: #0000BB;">"'.'"</span> as grouping mark. Use `read_delim()` for more control.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: One or more parsing issues, call `problems()` on your data frame for details,</span></span>
-<span><span class="co">## e.g.:</span></span>
-<span><span class="co">##   dat &lt;- vroom(...)</span></span>
-<span><span class="co">##   problems(dat)</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">16916</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">20</span></span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## <span style="font-weight: bold;">Delimiter:</span> ";"</span></span>
-<span><span class="co">## <span style="color: #BB0000;">chr</span>  (13): acronym, status, title, legalBasis, topics, frameworkProgramme, m...</span></span>
-<span><span class="co">## <span style="color: #00BB00;">dbl</span>   (3): id, totalCost, ecMaxContribution</span></span>
-<span><span class="co">## <span style="color: #BBBB00;">lgl</span>   (1): nature</span></span>
-<span><span class="co">## <span style="color: #0000BB;">date</span>  (3): startDate, endDate, ecSignatureDate</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Using <span style="color: #0000BB;">"','"</span> as decimal and <span style="color: #0000BB;">"'.'"</span> as grouping mark. Use `read_delim()` for more control.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">102954</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">25</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## <span style="font-weight: bold;">Delimiter:</span> ";"</span></span>
-<span><span class="co">## <span style="color: #BB0000;">chr</span>  (14): projectAcronym, vatNumber, name, shortName, activityType, street,...</span></span>
-<span><span class="co">## <span style="color: #00BB00;">dbl</span>   (5): projectID, organisationID, rcn, order, totalCost</span></span>
-<span><span class="co">## <span style="color: #00BB00;">num</span>   (2): ecContribution, netEcContribution</span></span>
-<span><span class="co">## <span style="color: #BBBB00;">lgl</span>   (3): SME, endOfParticipation, active</span></span>
-<span><span class="co">## <span style="color: #0000BB;">dttm</span>  (1): contentUpdateDate</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre>
-<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">horizon_fi</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 6 × 9</span></span></span>
-<span><span class="co">##   hankenimi      toteutuneet_maksut rahasto kuvaus aloitusp   lopetusp   ytunnus</span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> Quantum Contr…           2<span style="text-decoration: underline;">270</span>150. HORIZON The m… 2022-10-01 2025-09-30 NL0019…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> Quantum Contr…           2<span style="text-decoration: underline;">270</span>150. HORIZON The m… 2022-10-01 2025-09-30 IT0021…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">3</span> Quantum Contr…           2<span style="text-decoration: underline;">270</span>150. HORIZON The m… 2022-10-01 2025-09-30 NL8520…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">4</span> Quantum Contr…           2<span style="text-decoration: underline;">270</span>150. HORIZON The m… 2022-10-01 2025-09-30 GB2547…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">5</span> Quantum Contr…           2<span style="text-decoration: underline;">270</span>150. HORIZON The m… 2022-10-01 2025-09-30 NL8208…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">6</span> Quantum Contr…           2<span style="text-decoration: underline;">270</span>150. HORIZON The m… 2022-10-01 2025-09-30 GB5686…</span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 2 more variables: hakijanimi &lt;chr&gt;, country &lt;chr&gt;</span></span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="horizon-2020">Horizon 2020<a class="anchor" aria-label="anchor" href="#horizon-2020"></a>
-</h2>
-<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">h2020_fi</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_horizon_2020.html">get_horizon_2020</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Using <span style="color: #0000BB;">"','"</span> as decimal and <span style="color: #0000BB;">"'.'"</span> as grouping mark. Use `read_delim()` for more control.</span></span></code></pre>
-<pre><code><span><span class="co">## Warning: One or more parsing issues, call `problems()` on your data frame for details,</span></span>
-<span><span class="co">## e.g.:</span></span>
-<span><span class="co">##   dat &lt;- vroom(...)</span></span>
-<span><span class="co">##   problems(dat)</span></span></code></pre>
-<pre><code><span><span class="co">## <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">35389</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">20</span></span></span></code></pre>
-<pre><code><span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## <span style="font-weight: bold;">Delimiter:</span> ";"</span></span>
-<span><span class="co">## <span style="color: #BB0000;">chr</span>  (14): acronym, status, title, legalBasis, topics, frameworkProgramme, m...</span></span>
-<span><span class="co">## <span style="color: #00BB00;">dbl</span>   (3): id, totalCost, ecMaxContribution</span></span>
-<span><span class="co">## <span style="color: #0000BB;">date</span>  (3): startDate, endDate, ecSignatureDate</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Using <span style="color: #0000BB;">"','"</span> as decimal and <span style="color: #0000BB;">"'.'"</span> as grouping mark. Use `read_delim()` for more control.</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">178015</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">25</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span> <span style="color: #00BBBB;">────────────────────────────────────────────────────────</span></span></span>
-<span><span class="co">## <span style="font-weight: bold;">Delimiter:</span> ";"</span></span>
-<span><span class="co">## <span style="color: #BB0000;">chr</span>  (16): projectAcronym, vatNumber, name, shortName, activityType, street,...</span></span>
-<span><span class="co">## <span style="color: #00BB00;">dbl</span>   (5): projectID, organisationID, rcn, order, totalCost</span></span>
-<span><span class="co">## <span style="color: #BBBB00;">lgl</span>   (3): SME, endOfParticipation, active</span></span>
-<span><span class="co">## <span style="color: #0000BB;">dttm</span>  (1): contentUpdateDate</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification for this data.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Specify the column types or set `show_col_types = FALSE` to quiet this message.</span></span></code></pre>
-<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">h2020_fi</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## <span style="color: #949494;"># A tibble: 6 × 9</span></span></span>
-<span><span class="co">##   hankenimi      toteutuneet_maksut rahasto kuvaus aloitusp   lopetusp   ytunnus</span></span>
-<span><span class="co">##   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;date&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">1</span> Development o…             <span style="text-decoration: underline;">71</span>429  H2020   <span style="color: #949494;">"</span>The … 2015-05-01 2015-10-31 IT0194…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">2</span> A MOBILE SUPE…             <span style="text-decoration: underline;">71</span>429  H2020   <span style="color: #949494;">"</span>The … 2018-07-01 2018-12-31 <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">3</span> Glyco and Nan…            <span style="text-decoration: underline;">158</span>122. H2020   <span style="color: #949494;">"</span>The … 2017-04-01 2019-03-31 ESQ151…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">4</span> Developing a …             <span style="text-decoration: underline;">71</span>429  H2020   <span style="color: #949494;">"</span>Nano… 2019-03-01 2019-06-30 NL8542…</span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">5</span> Novel 1D phot…           1<span style="text-decoration: underline;">116</span>000  H2020   <span style="color: #949494;">"</span>The … 2018-01-01 2023-12-31 <span style="color: #BB0000;">NA</span>     </span></span>
-<span><span class="co">## <span style="color: #BCBCBC;">6</span> Novel 1D phot…           1<span style="text-decoration: underline;">116</span>000  H2020   <span style="color: #949494;">"</span>The … 2018-01-01 2023-12-31 PL7770…</span></span>
-<span><span class="co">## <span style="color: #949494;"># ℹ 2 more variables: hakijanimi &lt;chr&gt;, country &lt;chr&gt;</span></span></span></code></pre>
+<p>Get Greek kohesio projects</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">kohesio_projects</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_kohesio_projects.html">get_kohesio_projects</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"GR"</span><span class="op">)</span></span></code></pre></div>
+<p>Get Romanian kohesio beneficiaries</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">kohesio_beneficiaries</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_kohesio_beneficiaries.html">get_kohesio_beneficiaries</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"RO"</span><span class="op">)</span></span></code></pre></div>
+<p>Get Dutch FTS data for year 2024</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fts</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fts_data.html">get_fts_data</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, country <span class="op">=</span>  <span class="st">"NL"</span><span class="op">)</span></span></code></pre></div>
+<p>Get Swedish Horizon data</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">horizon</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>programme <span class="op">=</span> <span class="st">"HORIZON"</span>, country <span class="op">=</span> <span class="st">"SE"</span><span class="op">)</span></span></code></pre></div>
+<p>Get Danish h2020 data</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">h2020</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>programme <span class="op">=</span> <span class="st">"h2020"</span>, country <span class="op">=</span> <span class="st">"DK"</span><span class="op">)</span></span></code></pre></div>
+<p>Get German interreg data</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">interreg</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_interreg_data.html">get_interreg_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"DE"</span><span class="op">)</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

@@ -54,18 +54,26 @@
 <div class="section level1">
 <h1 id="eufundr-1">eufundr<a class="anchor" aria-label="anchor" href="#eufundr-1"></a>
 </h1>
-<p><code>eufundr</code> is an R package for downloading and analyzing publicly available EU funding data from multiple official sources:</p>
+<p><code>eufundr</code> is an R package for downloading publicly available EU funding data from multiple official sources:</p>
 <ul>
 <li>
-<strong>Kohesio</strong>: EU Cohesion Policy projects and beneficiaries</li>
+<strong>Kohesio</strong>: EU Cohesion Policy projects and beneficiaries. <a href="https://kohesio.ec.europa.eu/en/data" class="external-link uri">https://kohesio.ec.europa.eu/en/data</a>
+</li>
 <li>
-<strong>FTS</strong>: Financial Transparency System (EU budget expenditures)</li>
+<strong>FTS</strong>: Financial Transparency System (EU budget expenditures) <a href="https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data" class="external-link uri">https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data</a>
+</li>
 <li>
-<strong>CORDIS</strong>: Horizon Europe and Horizon 2020 research funding data</li>
+<strong>CORDIS</strong>: Horizon Europe and Horizon 2020 research funding data <a href="https://cordis.europa.eu/projects" class="external-link uri">https://cordis.europa.eu/projects</a>
+</li>
+<li>
+<strong>Interreg</strong>: keep.eu contains data on Interreg and IPA-IPA cross-border projects that have been approved and contracted and it also includes projects from other EU instruments or funds that contribute to macro-regional strategies (up to 2020).</li>
 </ul>
+<p>This package uses the data as it is served on the web page or API. Also the documentation of the data should be somewhere on these web pages.</p>
+<p>One use case for this data is to explore if a beneficiary is double funded. One can explore company ids, company names, project names and project descriptions from the data: For what purpose did a company receive data.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
+<p>In order to use package you need R version 4.1 or newer and remotes-package installed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dataninjafi/eufundr"</span><span class="op">)</span></span></code></pre></div>
@@ -84,14 +92,29 @@
 <span><span class="va">beneficiaries</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">kohesio_beneficiaries</span></span>
 <span><span class="va">fts</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">fts</span></span>
 <span><span class="va">horizon2020</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_2020</span></span>
-<span><span class="va">horizon_europe</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_europe</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="vignette">Vignette<a class="anchor" aria-label="anchor" href="#vignette"></a>
-</h2>
-<p>A step-by-step example is available:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/vignette.html" class="external-link">vignette</a></span><span class="op">(</span><span class="st">"eufundr"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">horizon_europe</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_europe</span></span>
+<span><span class="va">interreg</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">interreg</span></span>
+<span></span>
+<span><span class="co"># Download only certain country and sources</span></span>
+<span></span>
+<span><span class="co">## Get Greek kohesio projects</span></span>
+<span> <span class="va">kohesio_projects</span> <span class="op">=</span> <span class="fu"><a href="reference/get_kohesio_projects.html">get_kohesio_projects</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"GR"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Get Romanian beneficiaries</span></span>
+<span>    </span>
+<span><span class="va">kohesio_beneficiaries</span> <span class="op">=</span> <span class="fu"><a href="reference/get_kohesio_beneficiaries.html">get_kohesio_beneficiaries</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"RO"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Get Dutch FTS data for year 2024</span></span>
+<span><span class="va">fts</span> <span class="op">=</span> <span class="fu"><a href="reference/get_fts_data.html">get_fts_data</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, country <span class="op">=</span>  <span class="st">"NL"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Get Swedish Horizon data</span></span>
+<span><span class="va">horizon</span> <span class="op">=</span> <span class="fu"><a href="reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>programme <span class="op">=</span> <span class="st">"HORIZON"</span>, country <span class="op">=</span> <span class="st">"SE"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Get Danish h2020 data</span></span>
+<span><span class="va">h2020</span> <span class="op">=</span> <span class="fu"><a href="reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>programme <span class="op">=</span> <span class="st">"h2020"</span>, country <span class="op">=</span> <span class="st">"DK"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Get Portugese interreg data</span></span>
+<span><span class="va">interreg</span> <span class="op">=</span> <span class="fu"><a href="reference/get_interreg_data.html">get_interreg_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"PT"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
