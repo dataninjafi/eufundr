@@ -4,6 +4,7 @@
 #' @param country Optional ISO2 country code (e.g. "FI"). If NULL (default), downloads all available countries.
 #' @return A tibble of projects with cleaned column names
 #' @export
+
 get_kohesio_projects <- function(country = NULL){
   countries <- c(
     "AT", "BE", "BG", "CY", "CZ", "DE", "DK", "EE", "ES", "FI",
@@ -19,15 +20,24 @@ get_kohesio_projects <- function(country = NULL){
     countries <- country
   }
 
-  urls <- paste0(
-    "https://kohesio.ec.europa.eu/api/data/object?id=data/projects/latest_",
-    rep(countries, each = 2),
-    c("-21-27.csv", "-14-20.csv")
+
+  urls <- c(
+    paste0(
+      "https://kohesio.ec.europa.eu/api/data/object?id=data/projects-2021-2027/latest/",
+      countries,
+      "-pp21-27-latest.csv"
+    ),
+    paste0(
+      "https://kohesio.ec.europa.eu/api/data/object?id=data/projects-2014-2020/latest/",
+      countries,
+      "-pp14-20-latest.csv"
+    )
   )
+
 
   # Check if file exists (HEAD request)
   urls <- purrr::map(urls, function(url) {
-    resp <- try(httr::HEAD(url, httr::timeout(2)), silent = TRUE)
+    resp <- try(httr::HEAD(url, httr::timeout(4)), silent = TRUE)
     if (inherits(resp, "try-error") || httr::status_code(resp) != 200) {
       return(NA)
     }
@@ -76,7 +86,7 @@ get_kohesio_beneficiaries <- function(country = NULL) {
     countries <- country
   }
 
-  urls <- paste0("https://kohesio.ec.europa.eu/api/data/object?id=data/beneficiaries/latest_", countries, ".csv")
+  urls <- paste0("https://kohesio.ec.europa.eu/api/data/object?id=data/beneficiaries/latest/", countries, "-latest.csv")
 
   data_list <- purrr::map2(
     urls, countries,
