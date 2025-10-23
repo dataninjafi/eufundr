@@ -37,7 +37,7 @@ get_kohesio_projects <- function(country = NULL){
 
   # Check if file exists (HEAD request)
   urls <- purrr::map(urls, function(url) {
-    resp <- try(httr::HEAD(url, httr::timeout(4)), silent = TRUE)
+    resp <- try(httr::HEAD(url, httr::timeout(10)), silent = TRUE)
     if (inherits(resp, "try-error") || httr::status_code(resp) != 200) {
       return(NA)
     }
