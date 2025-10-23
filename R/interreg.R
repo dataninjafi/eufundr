@@ -63,10 +63,10 @@ get_interreg_data <- function(country = NULL) {
   tmpfile <- tempfile(fileext = ".xlsx")
   writeBin(httr2::resp_body_raw(resp), tmpfile)
 
-  projects <- readxl::read_excel(tmpfile, sheet = 2) |>
+  projects <- suppressWarnings(readxl::read_excel(tmpfile, sheet = 2)) |>
     janitor::clean_names()
 
-  partners <- readxl::read_excel(tmpfile, sheet = 3) |>
+  partners <- suppressWarnings(readxl::read_excel(tmpfile, sheet = 3)) |>
     janitor::clean_names()
 
   if (!is.null(country)) {
