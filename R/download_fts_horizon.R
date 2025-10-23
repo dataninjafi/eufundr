@@ -55,7 +55,7 @@ get_horizon_data <- function(programme = c("HORIZON", "h2020"), country = NULL) 
   url <- paste0(base_url, "cordis-", programme, "projects-csv.zip")
 
   # Download ZIP archive
-  download.file(url, zipfile, mode = "wb", quiet = TRUE)
+  httr::GET(url, httr::timeout(300), httr::write_disk(zipfile, overwrite = TRUE))
 
   # Read project and organization data
   projects <- readr::read_csv2(unz(zipfile, "project.csv"))
