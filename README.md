@@ -1,6 +1,617 @@
 eufundr
 ================
 
+
+![](man/figures/eufundr.png)
+
+# eufundr
+
+`eufundr` is an R package for downloading publicly available EU funding data from multiple official sources:
+
+- **Kohesio**: A comprehensive database of EU Cohesion Policy projects and beneficiaries. The portal brings together information on over 1.5 million projects across Europe, including funding sources, amounts, and implementing organizations. It enables users to track how EU regional and structural funds are invested in different member states. More information and open data: https://kohesio.ec.europa.eu/en/data.
+- **FTS**: The Financial Transparency System provides detailed information on EU budget expenditures and beneficiaries. It includes data on recipients of EU funding, amounts granted, and related programmes across multiple years. The system promotes transparency and accountability in the use of EU public funds. More information and open data: https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data
+- **CORDIS**: The EU’s research and innovation funding programmes supporting scientific excellence, collaboration, and technological development across Europe. The CORDIS portal provides information on projects, funding, participants, and outcomes, covering both ongoing and completed initiatives. More information and open data: https://cordis.europa.eu/projects
+- **Interreg**: A database containing approved and contracted Interreg and IPA cross-border cooperation projects. It also includes projects funded by other EU instruments or funds contributing to macro-regional strategies (up to 2020). The portal offers a comprehensive overview of EU territorial cooperation initiatives. More information and open data: https://keep.eu
+
+This package uses the data as it is served on the web page or API. Also the documentation of the data should be somewhere on these web pages.  
+
+One use case for this **data loading tool** is to download data for further exploration, for example, to check whether a beneficiary (company or organization) is double-funded. Users can explore company IDs, company names, project names, and project descriptions from the dataset. The data can help answer questions such as: ‘For what purpose did a company receive funding?’ or ‘Which companies received grants, and for what purposes?’
+
+## Installation
+
+In order to use package you need R version 4.1 or newer and remotes-package installed. If you are new to R and using R code please see https://rstudio-education.github.io/hopr/starting.html for more instructions.
+
+
+
+```r
+# install.packages("remotes")
+remotes::install_github("dataninjafi/eufundr")
+library(eufundr)
+```
+
+## Example Usage
+
+With get_all_data() function one gets data for a single country, set of countries or all available countries (when country parameter is not set) from the sources documented above. 
+
+Country filter approves  ISO 3166-1 alpha-2 codes. See the list: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
+
+Function returns a named list where
+
+* "kohesio_projects" element has a data.frame of all kohesio projects in question
+* "kohesio_beneficiaries" element has a data.frame of all kohesio beneficiaries in question
+* "fts" element has a data.frame of all fts data in question
+* "horizon" element has a data.frame of all horizon data in question
+* "interreg" element has a list of all interreg data in question: partners data.frame
+and a projects data.frame
+
+```r
+# Download all data for Finland
+all_data <- get_all_data("FI")
+
+
+# Access specific parts
+projects <- all_data$kohesio_projects
+beneficiaries <- all_data$kohesio_beneficiaries
+fts <- all_data$fts
+horizon <- all_data$horizon
+interreg <- all_data$interreg
+```
+
+To get Greek specific kohesio projects in a data.frame
+
+```r
+kohesio_projects = get_kohesio_projects(country = "GR")
+```
+One random example:
+
+```r
+kohesio_projects |> sample_n(1) |> glimpse() 
+Rows: 1
+Columns: 42
+$ operation_unique_identifier           <chr> "https://linkedopendata.eu/entity/Q2787640"
+$ operation_local_identifier            <chr> "5.066.989"
+$ operation_name_english                <chr> "COMPETITIVENESS TOOLING"
+$ operation_name_programme_language     <chr> "ΕΡΓΑΛΕΙΟΘΗΚΗ ΑΝΤΑΓΩΝΙΣΤΙΚΟΤΗΤΑΣ"
+$ country                               <chr> "GR"
+$ operation_start_date                  <chr> "19/12/2018"
+$ operation_end_date                    <chr> "13/04/2023"
+$ cofinancing_rate                      <chr> NA
+$ total_eligible_expenditure_amount     <chr> "40000.0"
+$ total_eligible_expenditure_currency   <chr> "EUR"
+$ project_eu_budget                     <chr> NA
+$ beneficiary_unique_identifier         <chr> "https://linkedopendata.eu/entity/Q2837172"
+$ location_indicator_latitude_longitude <chr> "38.060632220344,23.729512890625"
+$ category_of_intervention              <chr> "001"
+$ category_label                        <chr> "Generic productive investment in small an…
+$ thematic_objective_id                 <chr> "TO03"
+$ thematic_objective_label              <chr> "Competitiveness of SMEs"
+$ policy_objective_id                   <chr> "PO01"
+$ policy_objective_label                <chr> "Smarter Europe"
+$ specific_objective_id                 <chr> NA
+$ specific_objective_label              <chr> NA
+$ fund_code                             <chr> "ERDF"
+$ fund_name                             <chr> "European Regional Development Fund"
+$ programme_code                        <chr> "2014GR16M2OP001"
+$ programme_name                        <chr> "Competitiveness Entrepreneurship and Inno…
+$ postal_code                           <chr> NA
+$ lau_i_ds                              <chr> "EL_49010101"
+$ lau_labels                            <chr> "Commune of Acharnes"
+$ nuts1_label                           <chr> NA
+$ nuts2_label                           <chr> "Aττική"
+$ nuts3_label                           <chr> NA
+$ nuts1_code                            <chr> NA
+$ nuts2_code                            <chr> "EL30"
+$ nuts3_code                            <chr> NA
+$ programming_period                    <chr> "2014-2020"
+$ operation_summary_english             <chr> "As part of the improvement of its competi…
+$ operation_summary_programme_language  <chr> "Η επιχείρηση στα πλαίσια της βελτίωσης τη…
+$ managing_authority                    <chr> "Υπουργείο Οικονομίας, Ανάπτυξης και Τουρι…
+$ image_url                             <chr> NA
+$ info_regio_id                         <chr> NA
+$ info_regio_url                        <chr> NA
+$ coordinates                           <chr> NA
+```
+To get Romanian specific beneficiaries  in a data.frame
+
+```r
+kohesio_beneficiaries = get_kohesio_beneficiaries(country = "RO")
+```
+One random example:
+
+```r
+kohesio_beneficiaries |> sample_n(1) |> glimpse() 
+Rows: 1
+Columns: 5
+$ beneficiary       <chr> "https://linkedopendata.eu/entity/Q2752704"
+$ beneficiary_label <chr> "ARHITECTIS TRUST S.R.L."
+$ website           <chr> NA
+$ wikidata_id       <chr> NA
+$ country           <chr> "RO"
+```
+
+To get Dutch specific FTS data for year 2024 in a data.frame
+
+```r
+fts = get_fts_data(year = 2024, country =  "NL")
+```
+
+One random example:
+
+```r
+fts |> sample_n(1) |> glimpse() 
+Rows: 1
+Columns: 38
+$ year                                          <chr> "2024"
+$ budget                                        <chr> "BGUE"
+$ reference_of_the_legal_commitment_lc          <chr> "JAG.1545287"
+$ reference_budget                              <chr> "JAG.1545287.1"
+$ name_of_beneficiary                           <chr> "TECHNISCHE UNIVERSITEIT DELFT*DEL…
+$ vat_number_of_beneficiary                     <chr> "NL001569569B01"
+$ not_for_profit_organisation_nfpo              <chr> "No"
+$ non_governmental_organisation_ngo             <chr> "No"
+$ coordinator                                   <chr> "No"
+$ address                                       <chr> "STEVINWEG 1"
+$ city                                          <chr> "DELFT"
+$ postal_code                                   <chr> "2628 CN"
+$ beneficiary_country                           <chr> "Netherlands"
+$ nuts2                                         <chr> "Zuid-Holland"
+$ geographical_zone                             <chr> "-"
+$ action_location                               <chr> "-"
+$ beneficiary_s_contracted_amount_eur           <chr> "548741.4206"
+$ beneficiary_s_estimated_contracted_amount_eur <chr> "548741.4206"
+$ beneficiary_s_estimated_consumed_amount_eur   <chr> "0"
+$ commitment_contracted_amount_eur_a            <chr> "3595946"
+$ additional_reduced_amount_eur_b               <chr> "0"
+$ commitment_total_amount_eur_a_b               <chr> "3595946"
+$ commitment_consumed_amount_eur                <chr> "0"
+$ source_of_estimated_detailed_amount           <chr> "An estimated repartition for each…
+$ expense_type                                  <chr> "Operational"
+$ subject_of_grant_or_contract                  <chr> "101169348 - BETTER - BUILDING THE…
+$ responsible_department                        <chr> "REA - European Research Executive…
+$ budget_line_number                            <chr> "01 02 01 02"
+$ budget_line_name                              <chr> "Marie Skłodowska-Curie Actions"
+$ programme_name                                <chr> "1.0.11 - Horizon Europe"
+$ funding_type                                  <chr> "Grant"
+$ beneficiary_group_code                        <chr> "LE04"
+$ beneficiary_type                              <chr> "Public Bodies"
+$ project_start_date                            <chr> "45717"
+$ project_end_date                              <chr> "47177"
+$ type_of_contract                              <chr> "Action Grant"
+$ management_type                               <chr> "Direct management"
+$ benefiting_country                            <chr> "France (16%), Germany (7%), Italy…
+```
+
+Get Swedish Horizon data in a data.frame
+
+```r
+horizon = get_horizon_data(country = "SE")
+```
+One random example:
+
+```r
+horizon |> sample_n(1) |> glimpse() 
+Rows: 1
+Columns: 43
+$ projectID                 <dbl> 101061645
+$ acronym                   <chr> "MapIneq"
+$ status                    <chr> "SIGNED"
+$ title                     <chr> "Mapping inequalities through the life course"
+$ startDate                 <date> 2022-10-01
+$ endDate                   <date> 2025-12-31
+$ project_totalCost         <dbl> 3305295
+$ ecMaxContribution         <dbl> 3305295
+$ legalBasis                <chr> "HORIZON.2.2"
+$ topics                    <chr> "HORIZON-CL2-2021-TRANSFORMATIONS-01-03"
+$ ecSignatureDate           <date> 2022-06-08
+$ frameworkProgramme        <chr> "HORIZON"
+$ masterCall                <chr> "HORIZON-CL2-2021-TRANSFORMATIONS-01"
+$ subCall                   <chr> "HORIZON-CL2-2021-TRANSFORMATIONS-01"
+$ fundingScheme             <chr> "HORIZON-RIA"
+$ objective                 <chr> "The MapIneq project studies the trends and drivers…
+$ project_contentUpdateDate <chr> "2025-07-30 14:32:09"
+$ rcn                       <chr> "239036"
+$ grantDoi                  <chr> "10.3030/101061645"
+$ keywords                  <chr> "Life course, Social inequality, Spillovers, Opport…
+$ projectAcronym            <chr> "MapIneq"
+$ organisationID            <dbl> 999885022
+$ vatNumber                 <chr> "SE202100306201"
+$ name                      <chr> "STOCKHOLMS UNIVERSITET"
+$ shortName                 <chr> NA
+$ SME                       <lgl> FALSE
+$ activityType              <chr> "HES"
+$ street                    <chr> "UNIVERSITETSVAGEN 10"
+$ postCode                  <chr> "10691"
+$ city                      <chr> "Stockholm"
+$ country                   <chr> "SE"
+$ nutsCode                  <chr> "SE110"
+$ geolocation               <chr> "59.3251172,18.0710935"
+$ organizationURL           <chr> "http://www.su.se"
+$ contactForm               <chr> "https://ec.europa.eu/info/funding-tenders/opportun…
+$ contentUpdateDate         <dttm> 2025-07-30 14:32:09
+$ order                     <dbl> 6
+$ role                      <chr> "participant"
+$ ecContribution            <dbl> 36303125
+$ netEcContribution         <dbl> 36303125
+$ totalCost                 <dbl> 363031.2
+$ endOfParticipation        <lgl> FALSE
+$ active                    <lgl> NA
+```
+
+Get Portugese Interreg data in a list
+
+```r
+interreg = get_interreg_data(country = "PT")
+```
+
+One random example of the partners data.frame
+
+```r
+ interreg$partners |> sample_n(1) |> glimpse() 
+Rows: 1
+Columns: 138
+$ programme                                                                    <chr> "2007 - 2013 Spain - Portugal (ES-PT)"
+$ project_id_2021_2027_only                                                    <chr> NA
+$ project_acronym                                                              <chr> "0544_ADLA _4_P"
+$ organisation_in_english                                                      <chr> "Rede de Turismo de Aldeia do Alentejo"
+$ organisation_in_language_2                                                   <chr> NA
+$ organisation_in_language_3                                                   <chr> NA
+$ organisation_in_language_4                                                   <lgl> NA
+$ lead_partner                                                                 <chr> "No"
+$ type_of_organisation                                                         <chr> NA
+$ participant_identification_code                                              <chr> NA
+$ partner_s_id_if_not_pic                                                      <chr> NA
+$ street                                                                       <chr> "Largo do Posto"
+$ postal_code                                                                  <chr> "7250-242"
+$ town                                                                         <chr> "Juromenha"
+$ country                                                                      <chr> "Portugal"
+$ country_code                                                                 <chr> "PT"
+$ nuts1_code_or_equivalent                                                     <chr> "PT1"
+$ nuts1_or_equivalent                                                          <chr> "Continente"
+$ nuts2_code_or_equivalent                                                     <chr> "PT1C"
+$ nuts2_or_equivalent                                                          <chr> "Alentejo"
+$ nuts3_code_or_equivalent                                                     <chr> "PT187"
+$ nuts3_or_equivalent                                                          <chr> "Alentejo Central"
+$ latitude                                                                     <dbl> 38.74033
+$ longitude                                                                    <dbl> -7.239634
+$ department                                                                   <chr> NA
+$ department_country                                                           <chr> NA
+$ department_country_code                                                      <chr> NA
+$ town_department                                                              <chr> NA
+$ street_department                                                            <chr> NA
+$ postal_code_department                                                       <chr> NA
+$ website                                                                      <chr> NA
+$ legal_status                                                                 <chr> "n/a"
+$ partners_programme_co_financing_percent_2021_2027_only                       <chr> NA
+$ partners_programme_co_financing_eur_2021_2027_only                           <chr> NA
+$ partner_contribution_to_project_budget_eur_2021_2027_only                    <chr> NA
+$ partners_total_eligible_budget_expenditure                                   <dbl> 0
+$ erdf_contribution_2014_2020_only                                             <dbl> NA
+$ enpi_eni_contribution_2014_2020_only                                         <lgl> NA
+$ ipa_ii_contribution_2014_2020_only                                           <dbl> NA
+$ gber_schemes_de_minimis                                                      <lgl> NA
+$ contractors_name_2021_2027_only_1                                            <chr> NA
+$ contractors_name_2021_2027_only_2                                            <chr> NA
+$ contractors_name_2021_2027_only_3                                            <chr> NA
+$ contractors_name_2021_2027_only_4                                            <chr> NA
+$ contractors_name_2021_2027_only_5                                            <chr> NA
+$ contractors_name_2021_2027_only_6                                            <chr> NA
+$ contractors_name_2021_2027_only_7                                            <chr> NA
+$ contractors_name_2021_2027_only_8                                            <lgl> NA
+$ contractors_name_2021_2027_only_9                                            <lgl> NA
+$ contractors_name_2021_2027_only_10                                           <lgl> NA
+$ contractors_name_2021_2027_only_11                                           <lgl> NA
+$ contractors_name_2021_2027_only_12                                           <lgl> NA
+$ contractors_name_2021_2027_only_13                                           <lgl> NA
+$ contractors_name_2021_2027_only_14                                           <lgl> NA
+$ contractors_name_2021_2027_only_15                                           <lgl> NA
+$ contractors_name_2021_2027_only_16                                           <lgl> NA
+$ contractors_name_2021_2027_only_17                                           <lgl> NA
+$ contractors_name_2021_2027_only_18                                           <lgl> NA
+$ contractors_name_2021_2027_only_19                                           <lgl> NA
+$ contractors_name_2021_2027_only_20                                           <lgl> NA
+$ contractors_name_2021_2027_only_21                                           <lgl> NA
+$ contractors_name_2021_2027_only_22                                           <lgl> NA
+$ contractors_name_2021_2027_only_23                                           <lgl> NA
+$ contractors_name_2021_2027_only_24                                           <lgl> NA
+$ contractors_name_2021_2027_only_25                                           <lgl> NA
+$ contractors_name_2021_2027_only_26                                           <lgl> NA
+$ contractors_name_2021_2027_only_27                                           <lgl> NA
+$ contractors_name_2021_2027_only_28                                           <lgl> NA
+$ contractors_name_2021_2027_only_29                                           <lgl> NA
+$ contractors_name_2021_2027_only_30                                           <lgl> NA
+$ contractors_name_2021_2027_only_31                                           <lgl> NA
+$ contractors_name_2021_2027_only_32                                           <lgl> NA
+$ contractors_name_2021_2027_only_33                                           <lgl> NA
+$ contractors_name_2021_2027_only_34                                           <lgl> NA
+$ contractors_name_2021_2027_only_35                                           <lgl> NA
+$ contractors_name_2021_2027_only_36                                           <lgl> NA
+$ contractors_name_2021_2027_only_37                                           <lgl> NA
+$ contractors_name_2021_2027_only_38                                           <lgl> NA
+$ contractors_name_2021_2027_only_39                                           <lgl> NA
+$ contractors_name_2021_2027_only_40                                           <lgl> NA
+$ contractors_name_2021_2027_only_41                                           <lgl> NA
+$ contractors_name_2021_2027_only_42                                           <lgl> NA
+$ contractors_name_2021_2027_only_43                                           <lgl> NA
+$ contractors_name_2021_2027_only_44                                           <lgl> NA
+$ contractors_name_2021_2027_only_45                                           <lgl> NA
+$ contractors_name_2021_2027_only_46                                           <lgl> NA
+$ contractors_name_2021_2027_only_47                                           <lgl> NA
+$ contractors_name_2021_2027_only_48                                           <lgl> NA
+$ contractors_name_2021_2027_only_49                                           <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_1  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_2  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_3  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_4  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_5  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_6  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_7  <chr> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_8  <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_9  <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_10 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_11 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_12 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_13 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_14 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_15 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_16 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_17 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_18 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_19 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_20 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_21 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_22 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_23 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_24 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_25 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_26 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_27 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_28 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_29 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_30 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_31 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_32 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_33 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_34 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_35 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_36 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_37 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_38 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_39 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_40 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_41 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_42 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_43 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_44 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_45 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_46 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_47 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_48 <lgl> NA
+$ contractor_s_vat_registration_or_tax_identification_number_2021_2027_only_49 <lgl> NA
+```
+
+One random example of the projects data.frame
+
+
+
+```r
+interreg$projects |> sample_n(1) |> glimpse() 
+Rows: 1
+Columns: 197
+$ period                                                                 <chr> "2014-2020"
+$ programme                                                              <chr> "2014 - 2020 INTERREG V-A Spain - Portugal (…
+$ project_id_2021_2027_only                                              <chr> NA
+$ project_acronym                                                        <chr> "0445_4IE_4_P"
+$ project_name_in_english                                                <chr> "International Institute for Research and In…
+$ project_name_in_language_2                                             <chr> "Instituto Internacional de Investigación e …
+$ project_name_in_language_3                                             <chr> "Instituto Internacional de Investigação e I…
+$ project_name_in_language_4                                             <lgl> NA
+$ project_name_in_language_5                                             <lgl> NA
+$ description_in_english                                                 <chr> "This project aims to understand the biomedi…
+$ description_in_language_2                                              <chr> "Con este proyecto se pretende comprender lo…
+$ description_in_language_3                                              <chr> "Com este projeto pretende-se compreender os…
+$ description_in_language_4                                              <lgl> NA
+$ description_in_language_5                                              <lgl> NA
+$ expected_achievements_in_english                                       <chr> NA
+$ expected_achievements_in_language_2                                    <chr> NA
+$ expected_achievements_in_language_3                                    <chr> NA
+$ expected_achievements_in_language_4                                    <lgl> NA
+$ actual_achievements_in_english                                         <chr> NA
+$ actual_achievements_in_language_2                                      <chr> NA
+$ actual_achievements_in_language_3                                      <chr> NA
+$ actual_achievements_in_language_4                                      <lgl> NA
+$ actual_achievements_in_language_5                                      <lgl> NA
+$ project_start                                                          <dttm> 2015-10-01
+$ project_end                                                            <dttm> 2019-12-31
+$ relevant_mentions_and_prizes                                           <chr> NA
+$ projects_total_budget_expenditure                                      <dbl> 1346288
+$ projects_eu_funding                                                    <dbl> 1009716
+$ union_co_financing_rate                                                <chr> NA
+$ contributing_eu_funds                                                  <chr> "ERDF"
+$ programme_specific_objective_2021_2027_only                            <chr> NA
+$ investment_infrastructure_area_1                                       <chr> NA
+$ investment_infrastructure_area_2                                       <chr> NA
+$ investment_infrastructure_area_3                                       <chr> NA
+$ investment_infrastructure_area_4                                       <chr> NA
+$ investment_infrastructure_area_5                                       <chr> NA
+$ investment_infrastructure_area_6                                       <chr> NA
+$ investment_infrastructure_area_7                                       <chr> NA
+$ investment_infrastructure_area_8                                       <chr> NA
+$ investment_infrastructure_area_9                                       <chr> NA
+$ investment_infrastructure_area_10                                      <chr> NA
+$ investment_infrastructure_area_11                                      <chr> NA
+$ investment_infrastructure_area_12                                      <chr> NA
+$ investment_infrastructure_area_13                                      <chr> NA
+$ investment_infrastructure_area_14                                      <chr> NA
+$ investment_infrastructure_area_15                                      <chr> NA
+$ investment_infrastructure_area_16                                      <chr> NA
+$ investment_infrastructure_area_17                                      <chr> NA
+$ investment_infrastructure_area_18                                      <chr> NA
+$ investment_infrastructure_area_19                                      <chr> NA
+$ investment_infrastructure_area_20                                      <chr> NA
+$ investment_infrastructure_area_21                                      <chr> NA
+$ project_deliverables_other_than_infrastructural_investment_area_focus  <chr> NA
+$ project_deliverables_2021_2027_only                                    <chr> NA
+$ type_of_intervention_2021_2027_only                                    <chr> NA
+$ programme_priority_2021_2027_only                                      <chr> NA
+$ specific_objective_2014_2020_interreg_and_interreg_ipa_cbc_only        <lgl> NA
+$ thematic_objective_eni_cbc_only                                        <lgl> NA
+$ thematic_objective_2014_2020_interreg_only                             <lgl> NA
+$ investment_priority_2014_2020_interreg_only                            <lgl> NA
+$ thematic_priority_2014_2020_interreg_ipa_cbc_only                      <lgl> NA
+$ relevant_precedent_project                                             <lgl> NA
+$ relevant_subsequent_project                                            <lgl> NA
+$ linked_project                                                         <chr> NA
+$ operation_of_strategic_importance_osi_or_project_above_eur_5_million   <lgl> FALSE
+$ policy_objective_interreg_specific_objective                           <chr> NA
+$ theme_1                                                                <chr> "Demographic change and immigration"
+$ theme_2                                                                <chr> NA
+$ theme_3                                                                <chr> NA
+$ number_of_partners                                                     <dbl> 5
+$ erdf_contribution_amount                                               <dbl> NA
+$ erdf_contribution_co_financing_rate                                    <chr> NA
+$ ipa_ipa_ii_ipa_iii_contribution_amount                                 <dbl> NA
+$ ipa_ipa_ii_ipa_iii_contribution_co_financing_rate                      <chr> NA
+$ enpi_eni_ndici_contribution_amount                                     <lgl> NA
+$ erdf_equivalent_amount_1                                               <chr> NA
+$ erdf_equivalent_amount_2                                               <lgl> NA
+$ erdf_equivalent_amount_3                                               <lgl> NA
+$ erdf_equivalent_co_financing_rate_1                                    <chr> NA
+$ erdf_equivalent_co_financing_rate_2                                    <lgl> NA
+$ erdf_equivalent_co_financing_rate_3                                    <lgl> NA
+$ erdf_equivalent_source_1                                               <lgl> NA
+$ erdf_equivalent_source_2                                               <lgl> NA
+$ erdf_equivalent_source_3                                               <lgl> NA
+$ third_country_contribution                                             <lgl> NA
+$ programme_output_indicator_1_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_2_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_3_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_4_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_5_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_6_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_7_code_and_name_2021_2027_only              <chr> NA
+$ programme_output_indicator_1_measurement_unit_2021_2027_only           <chr> NA
+$ programme_output_indicator_2_measurement_unit_2021_2027_only           <chr> NA
+$ programme_output_indicator_3_measurement_unit_2021_2027_only           <chr> NA
+$ programme_output_indicator_4_measurement_unit_2021_2027_only           <chr> NA
+$ programme_output_indicator_5_measurement_unit_2021_2027_only           <chr> NA
+$ programme_output_indicator_6_measurement_unit_2021_2027_only           <chr> NA
+$ programme_output_indicator_7_measurement_unit_2021_2027_only           <chr> NA
+$ project_outputs_2021_2027_only                                         <chr> NA
+$ delivered_output_indicators_2021_2027_only                             <chr> NA
+$ expected_outputs_in_english                                            <lgl> NA
+$ expected_outputs_in_language_2                                         <lgl> NA
+$ expected_outputs_in_language_3                                         <lgl> NA
+$ expected_outputs_in_language_4                                         <lgl> NA
+$ delivered_outputs_in_english                                           <lgl> NA
+$ delivered_outputs_in_language_2                                        <lgl> NA
+$ delivered_outputs_in_language_3                                        <lgl> NA
+$ delivered_outputs_in_language_4                                        <lgl> NA
+$ programme_result_indicator_1_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_2_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_3_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_4_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_5_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_6_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_7_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_8_code_and_name_2021_2027_only              <chr> NA
+$ programme_result_indicator_1_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_2_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_3_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_4_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_5_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_6_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_7_measurement_unit_2021_2027_only           <chr> NA
+$ programme_result_indicator_8_measurement_unit_2021_2027_only           <chr> NA
+$ delivered_result_indicators_2021_2027_only                             <chr> NA
+$ project_s_contribution_to_wider_strategies_and_policies_2021_2027_only <chr> NA
+$ european_union_mr_ss_to_which_the_project_contributes                  <chr> NA
+$ priority_area_eu_macro_regional_strategy_prior_to_2021_2027            <lgl> NA
+$ degree_of_compliance_eu_macro_regional_strategy_prior_to_2021_2027     <lgl> NA
+$ investment_infrastructure_number_1                                     <chr> NA
+$ investment_infrastructure_number_2                                     <chr> NA
+$ investment_infrastructure_number_3                                     <chr> NA
+$ investment_infrastructure_number_4                                     <chr> NA
+$ investment_infrastructure_number_5                                     <chr> NA
+$ investment_infrastructure_number_6                                     <chr> NA
+$ investment_infrastructure_number_7                                     <chr> NA
+$ investment_infrastructure_number_8                                     <chr> NA
+$ investment_infrastructure_number_9                                     <chr> NA
+$ investment_infrastructure_number_10                                    <chr> NA
+$ investment_infrastructure_number_11                                    <chr> NA
+$ investment_infrastructure_number_12                                    <chr> NA
+$ investment_infrastructure_number_13                                    <chr> NA
+$ investment_infrastructure_number_14                                    <chr> NA
+$ investment_infrastructure_number_15                                    <chr> NA
+$ investment_infrastructure_number_16                                    <chr> NA
+$ investment_infrastructure_number_17                                    <chr> NA
+$ investment_infrastructure_number_18                                    <chr> NA
+$ investment_infrastructure_number_19                                    <chr> NA
+$ investment_infrastructure_number_20                                    <chr> NA
+$ investment_infrastructure_number_21                                    <chr> NA
+$ investment_infrastructure_name_1                                       <chr> NA
+$ investment_infrastructure_name_2                                       <chr> NA
+$ investment_infrastructure_name_3                                       <chr> NA
+$ investment_infrastructure_name_4                                       <chr> NA
+$ investment_infrastructure_name_5                                       <chr> NA
+$ investment_infrastructure_name_6                                       <chr> NA
+$ investment_infrastructure_name_7                                       <chr> NA
+$ investment_infrastructure_name_8                                       <chr> NA
+$ investment_infrastructure_name_9                                       <chr> NA
+$ investment_infrastructure_name_10                                      <chr> NA
+$ investment_infrastructure_name_11                                      <chr> NA
+$ investment_infrastructure_name_12                                      <chr> NA
+$ investment_infrastructure_name_13                                      <chr> NA
+$ investment_infrastructure_name_14                                      <chr> NA
+$ investment_infrastructure_name_15                                      <chr> NA
+$ investment_infrastructure_name_16                                      <chr> NA
+$ investment_infrastructure_name_17                                      <chr> NA
+$ investment_infrastructure_name_18                                      <chr> NA
+$ investment_infrastructure_name_19                                      <chr> NA
+$ investment_infrastructure_name_20                                      <chr> NA
+$ investment_infrastructure_name_21                                      <chr> NA
+$ investment_infrastructure_cost_1                                       <dbl> NA
+$ investment_infrastructure_cost_2                                       <dbl> NA
+$ investment_infrastructure_cost_3                                       <dbl> NA
+$ investment_infrastructure_cost_4                                       <dbl> NA
+$ investment_infrastructure_cost_5                                       <dbl> NA
+$ investment_infrastructure_cost_6                                       <dbl> NA
+$ investment_infrastructure_cost_7                                       <dbl> NA
+$ investment_infrastructure_cost_8                                       <dbl> NA
+$ investment_infrastructure_cost_9                                       <dbl> NA
+$ investment_infrastructure_cost_10                                      <dbl> NA
+$ investment_infrastructure_cost_11                                      <dbl> NA
+$ investment_infrastructure_cost_12                                      <dbl> NA
+$ investment_infrastructure_cost_13                                      <dbl> NA
+$ investment_infrastructure_cost_14                                      <dbl> NA
+$ investment_infrastructure_cost_15                                      <dbl> NA
+$ investment_infrastructure_cost_16                                      <dbl> NA
+$ investment_infrastructure_cost_17                                      <dbl> NA
+$ investment_infrastructure_cost_18                                      <dbl> NA
+$ investment_infrastructure_cost_19                                      <dbl> NA
+$ investment_infrastructure_cost_20                                      <dbl> NA
+$ investment_infrastructure_cost_21                                      <dbl> NA
+$ infrastructure_cost_budget_2014_2020_only                              <lgl> NA
+$ website                                                                <chr> "http://www.poctep.eu/"
+$ project_is_small_project_2021_2027_only                                <chr> NA
+$ call_serial_number                                                     <chr> "1"
+```
+
+
+## Example product that uses of this data
+
+The Finnish Certifying Body for Agricultural Funds has developed a Power BI dashboard that allows users to explore the relevant data to detect potential cases of double funding. Users can examine VAT numbers, company names, project titles, and project descriptions.
+
+![](man/figures/powerbi.png)
+
+
+## Contributing
+
+Pull requests and issues are welcome! This project follows an open data and open science ethos.
+
+## License
+
+MIT © Risto Kaartinen
+
 ![](man/figures/eufundr.png)
 
 # eufundr

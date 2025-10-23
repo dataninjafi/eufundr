@@ -6,13 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>eufundr • eufundr</title>
-<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="eufundr">
-<meta name="description" content="Provides functions to download and process data from EU sources such as Kohesio, FTS, and Horizon Europe.">
-<meta property="og:description" content="Provides functions to download and process data from EU sources such as Kohesio, FTS, and Horizon Europe.">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="eufundr">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +18,7 @@
 
     <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
-    <a class="navbar-brand me-2" href="index.html">eufundr</a>
+    <a class="navbar-brand me-2" href="../index.html">eufundr</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1</small>
 
@@ -31,18 +29,18 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="articles/eufundr.html">Get started</a></li>
-<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item dropdown">
+<li class="nav-item"><a class="nav-link" href="../articles/eufundr.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/README.html">eufundr</a></li>
+<li><a class="dropdown-item" href="../articles/README.html">eufundr</a></li>
   </ul>
 </li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
 <li class="nav-item"><a class="external-link nav-link" href="https://github.com/dataninjafi/eufundr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
@@ -50,57 +48,106 @@
 
 
   </div>
-</nav><div class="container template-home">
+</nav><div class="container template-article">
+
+
+
+
 <div class="row">
-  <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="eufundr">eufundr<a class="anchor" aria-label="anchor" href="#eufundr"></a>
-</h1></div>
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>eufundr</h1>
+            
+      
+      <small class="dont-index">Source: <a href="https://github.com/dataninjafi/eufundr/blob/HEAD/vignettes/README.Rmd" class="external-link"><code>vignettes/README.Rmd</code></a></small>
+      <div class="d-none name"><code>README.Rmd</code></div>
+    </div>
+
+    
+    
 <p><img src="reference/figures/eufundr.png"></p>
-</div>
-<div class="section level1">
-<h1 id="eufundr-1">eufundr<a class="anchor" aria-label="anchor" href="#eufundr-1"></a>
-</h1>
-<p><code>eufundr</code> is an R package for downloading publicly available EU funding data from multiple official sources:</p>
+<div class="section level2">
+<h2 id="eufundr">eufundr<a class="anchor" aria-label="anchor" href="#eufundr"></a>
+</h2>
+<p><code>eufundr</code> is an R package for downloading publicly
+available EU funding data from multiple official sources:</p>
 <ul>
 <li>
-<strong>Kohesio</strong>: A comprehensive database of EU Cohesion Policy projects and beneficiaries. The portal brings together information on over 1.5 million projects across Europe, including funding sources, amounts, and implementing organizations. It enables users to track how EU regional and structural funds are invested in different member states. More information and open data: <a href="https://kohesio.ec.europa.eu/en/data" class="external-link uri">https://kohesio.ec.europa.eu/en/data</a>.</li>
+<strong>Kohesio</strong>: A comprehensive database of EU Cohesion
+Policy projects and beneficiaries. The portal brings together
+information on over 1.5 million projects across Europe, including
+funding sources, amounts, and implementing organizations. It enables
+users to track how EU regional and structural funds are invested in
+different member states. More information and open data: <a href="https://kohesio.ec.europa.eu/en/data" class="external-link uri">https://kohesio.ec.europa.eu/en/data</a>.</li>
 <li>
-<strong>FTS</strong>: The Financial Transparency System provides detailed information on EU budget expenditures and beneficiaries. It includes data on recipients of EU funding, amounts granted, and related programmes across multiple years. The system promotes transparency and accountability in the use of EU public funds. More information and open data: <a href="https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data" class="external-link uri">https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data</a>
+<strong>FTS</strong>: The Financial Transparency System provides
+detailed information on EU budget expenditures and beneficiaries. It
+includes data on recipients of EU funding, amounts granted, and related
+programmes across multiple years. The system promotes transparency and
+accountability in the use of EU public funds. More information and open
+data: <a href="https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data" class="external-link uri">https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data</a>
 </li>
 <li>
-<strong>CORDIS</strong>: The EU’s research and innovation funding programmes supporting scientific excellence, collaboration, and technological development across Europe. The CORDIS portal provides information on projects, funding, participants, and outcomes, covering both ongoing and completed initiatives. More information and open data: <a href="https://cordis.europa.eu/projects" class="external-link uri">https://cordis.europa.eu/projects</a>
+<strong>CORDIS</strong>: The EU’s research and innovation funding
+programmes supporting scientific excellence, collaboration, and
+technological development across Europe. The CORDIS portal provides
+information on projects, funding, participants, and outcomes, covering
+both ongoing and completed initiatives. More information and open data:
+<a href="https://cordis.europa.eu/projects" class="external-link uri">https://cordis.europa.eu/projects</a>
 </li>
 <li>
-<strong>Interreg</strong>: A database containing approved and contracted Interreg and IPA cross-border cooperation projects. It also includes projects funded by other EU instruments or funds contributing to macro-regional strategies (up to 2020). The portal offers a comprehensive overview of EU territorial cooperation initiatives. More information and open data: <a href="https://keep.eu" class="external-link uri">https://keep.eu</a>
+<strong>Interreg</strong>: A database containing approved and
+contracted Interreg and IPA cross-border cooperation projects. It also
+includes projects funded by other EU instruments or funds contributing
+to macro-regional strategies (up to 2020). The portal offers a
+comprehensive overview of EU territorial cooperation initiatives. More
+information and open data: <a href="https://keep.eu" class="external-link uri">https://keep.eu</a>
 </li>
 </ul>
-<p>This package uses the data as it is served on the web page or API. Also the documentation of the data should be somewhere on these web pages.</p>
-<p>One use case for this <strong>data loading tool</strong> is to download data for further exploration, for example, to check whether a beneficiary (company or organization) is double-funded. Users can explore company IDs, company names, project names, and project descriptions from the dataset. The data can help answer questions such as: ‘For what purpose did a company receive funding?’ or ‘Which companies received grants, and for what purposes?’</p>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>In order to use package you need R version 4.1 or newer and remotes-package installed. If you are new to R and using R code please see <a href="https://rstudio-education.github.io/hopr/starting.html" class="external-link uri">https://rstudio-education.github.io/hopr/starting.html</a> for more instructions.</p>
+<p>This package uses the data as it is served on the web page or API.
+Also the documentation of the data should be somewhere on these web
+pages.</p>
+<p>One use case for this <strong>data loading tool</strong> is to
+download data for further exploration, for example, to check whether a
+beneficiary (company or organization) is double-funded. Users can
+explore company IDs, company names, project names, and project
+descriptions from the dataset. The data can help answer questions such
+as: ‘For what purpose did a company receive funding?’ or ‘Which
+companies received grants, and for what purposes?’</p>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
+<p>In order to use package you need R version 4.1 or newer and
+remotes-package installed. If you are new to R and using R code please
+see <a href="https://rstudio-education.github.io/hopr/starting.html" class="external-link uri">https://rstudio-education.github.io/hopr/starting.html</a>
+for more instructions.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dataninjafi/eufundr"</span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dataninjafi/eufundr" class="external-link">eufundr</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="example-usage">Example Usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
-</h2>
-<p>With get_all_data() function one gets data for a single country, set of countries or all available countries (when country parameter is not set) from the sources documented above.</p>
+<div class="section level3">
+<h3 id="example-usage">Example Usage<a class="anchor" aria-label="anchor" href="#example-usage"></a>
+</h3>
+<p>With get_all_data() function one gets data for a single country, set
+of countries or all available countries (when country parameter is not
+set) from the sources documented above.</p>
 <p>Country filter approves ISO 3166-1 alpha-2 codes. See the list: <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" class="external-link uri">https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements</a></p>
 <p>Function returns a named list where</p>
 <ul>
-<li>“kohesio_projects” element has a data.frame of all kohesio projects in question</li>
-<li>“kohesio_beneficiaries” element has a data.frame of all kohesio beneficiaries in question</li>
+<li>“kohesio_projects” element has a data.frame of all kohesio projects
+in question</li>
+<li>“kohesio_beneficiaries” element has a data.frame of all kohesio
+beneficiaries in question</li>
 <li>“fts” element has a data.frame of all fts data in question</li>
-<li>“horizon” element has a data.frame of all horizon data in question</li>
-<li>“interreg” element has a list of all interreg data in question: partners data.frame and a projects data.frame</li>
+<li>“horizon” element has a data.frame of all horizon data in
+question</li>
+<li>“interreg” element has a list of all interreg data in question:
+partners data.frame and a projects data.frame</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Download all data for Finland</span></span>
-<span><span class="va">all_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_data.html">get_all_data</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span>
+<span><span class="va">all_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_all_data.html">get_all_data</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># Access specific parts</span></span>
@@ -111,7 +158,7 @@
 <span><span class="va">interreg</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">interreg</span></span></code></pre></div>
 <p>To get Greek specific kohesio projects in a data.frame</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">kohesio_projects</span> <span class="op">=</span> <span class="fu"><a href="reference/get_kohesio_projects.html">get_kohesio_projects</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"GR"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">kohesio_projects</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_kohesio_projects.html">get_kohesio_projects</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"GR"</span><span class="op">)</span></span></code></pre></div>
 <p>One random example:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>kohesio_projects <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>() </span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>Rows<span class="sc">:</span> <span class="dv">1</span></span>
@@ -160,7 +207,7 @@
 <span id="cb4-45"><a href="#cb4-45" tabindex="-1"></a><span class="st">$ coordinates                           &lt;chr&gt; NA</span></span></code></pre></div>
 <p>To get Romanian specific beneficiaries in a data.frame</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">kohesio_beneficiaries</span> <span class="op">=</span> <span class="fu"><a href="reference/get_kohesio_beneficiaries.html">get_kohesio_beneficiaries</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"RO"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">kohesio_beneficiaries</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_kohesio_beneficiaries.html">get_kohesio_beneficiaries</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"RO"</span><span class="op">)</span></span></code></pre></div>
 <p>One random example:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>kohesio_beneficiaries <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>() </span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>Rows<span class="sc">:</span> <span class="dv">1</span></span>
@@ -172,7 +219,7 @@
 <span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="sc">$</span> country           <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="st">"RO"</span></span></code></pre></div>
 <p>To get Dutch specific FTS data for year 2024 in a data.frame</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">fts</span> <span class="op">=</span> <span class="fu"><a href="reference/get_fts_data.html">get_fts_data</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, country <span class="op">=</span>  <span class="st">"NL"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">fts</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_fts_data.html">get_fts_data</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, country <span class="op">=</span>  <span class="st">"NL"</span><span class="op">)</span></span></code></pre></div>
 <p>One random example:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>fts <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>() </span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>Rows<span class="sc">:</span> <span class="dv">1</span></span>
@@ -217,7 +264,7 @@
 <span id="cb8-41"><a href="#cb8-41" tabindex="-1"></a><span class="sc">$</span> benefiting_country                            <span class="sc">&lt;</span>chr<span class="sc">&gt;</span> <span class="st">"France (16%), Germany (7%), Italy…</span></span></code></pre></div>
 <p>Get Swedish Horizon data in a data.frame</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">horizon</span> <span class="op">=</span> <span class="fu"><a href="reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"SE"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">horizon</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"SE"</span><span class="op">)</span></span></code></pre></div>
 <p>One random example:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>horizon <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>() </span>
 <span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>Rows<span class="sc">:</span> <span class="dv">1</span></span>
@@ -267,7 +314,7 @@
 <span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a><span class="st">$ active                    &lt;lgl&gt; NA</span></span></code></pre></div>
 <p>Get Portugese Interreg data in a list</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">interreg</span> <span class="op">=</span> <span class="fu"><a href="reference/get_interreg_data.html">get_interreg_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"PT"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">interreg</span> <span class="op">=</span> <span class="fu"><a href="../reference/get_interreg_data.html">get_interreg_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"PT"</span><span class="op">)</span></span></code></pre></div>
 <p>One random example of the partners data.frame</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a> interreg<span class="sc">$</span>partners <span class="sc">|&gt;</span> <span class="fu">sample_n</span>(<span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">glimpse</span>() </span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>Rows<span class="sc">:</span> <span class="dv">1</span></span>
@@ -612,135 +659,31 @@
 <span id="cb13-199"><a href="#cb13-199" tabindex="-1"></a><span class="st">$ project_is_small_project_2021_2027_only                                &lt;chr&gt; NA</span></span>
 <span id="cb13-200"><a href="#cb13-200" tabindex="-1"></a><span class="st">$ call_serial_number                                                     &lt;chr&gt; "</span><span class="dv">1</span><span class="st">"</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="example-product-that-uses-of-this-data">Example product that uses of this data<a class="anchor" aria-label="anchor" href="#example-product-that-uses-of-this-data"></a>
-</h2>
-<p>The Finnish Certifying Body for Agricultural Funds has developed a Power BI dashboard that allows users to explore the relevant data to detect potential cases of double funding. Users can examine VAT numbers, company names, project titles, and project descriptions.</p>
+<div class="section level3">
+<h3 id="example-product-that-uses-of-this-data">Example product that uses of this data<a class="anchor" aria-label="anchor" href="#example-product-that-uses-of-this-data"></a>
+</h3>
+<p>The Finnish Certifying Body for Agricultural Funds has developed a
+Power BI dashboard that allows users to explore the relevant data to
+detect potential cases of double funding. Users can examine VAT numbers,
+company names, project titles, and project descriptions.</p>
 <p><img src="reference/figures/powerbi.png"></p>
 </div>
-<div class="section level2">
-<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
-</h2>
-<p>Pull requests and issues are welcome! This project follows an open data and open science ethos.</p>
+<div class="section level3">
+<h3 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h3>
+<p>Pull requests and issues are welcome! This project follows an open
+data and open science ethos.</p>
 </div>
-<div class="section level2">
-<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
-</h2>
-<p>MIT © Risto Kaartinen</p>
-<p><img src="reference/figures/eufundr.png"></p>
-</div>
-</div>
-<div class="section level1">
-<h1 id="eufundr-2">eufundr<a class="anchor" aria-label="anchor" href="#eufundr-2"></a>
-</h1>
-<p><code>eufundr</code> is an R package for downloading publicly available EU funding data from multiple official sources:</p>
-<ul>
-<li>
-<strong>Kohesio</strong>: EU Cohesion Policy projects and beneficiaries. <a href="https://kohesio.ec.europa.eu/en/data" class="external-link uri">https://kohesio.ec.europa.eu/en/data</a>
-</li>
-<li>
-<strong>FTS</strong>: Financial Transparency System (EU budget expenditures) <a href="https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data" class="external-link uri">https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data</a>
-</li>
-<li>
-<strong>CORDIS</strong>: Horizon Europe and Horizon 2020 research funding data <a href="https://cordis.europa.eu/projects" class="external-link uri">https://cordis.europa.eu/projects</a>
-</li>
-<li>
-<strong>Interreg</strong>: keep.eu contains data on Interreg and IPA-IPA cross-border projects that have been approved and contracted and it also includes projects from other EU instruments or funds that contribute to macro-regional strategies (up to 2020).</li>
-</ul>
-<p>This package uses the data as it is served on the web page or API. Also the documentation of the data should be somewhere on these web pages.</p>
-<p>One use case for this <strong>data loading tool</strong> is to download data for further exploration, for example, to check whether a beneficiary (company or organization) is double-funded. Users can explore company IDs, company names, project names, and project descriptions from the dataset. The data can help answer questions such as: ‘For what purpose did a company receive funding?’ or ‘Which companies received grants, and for what purposes?’</p>
-<div class="section level2">
-<h2 id="installation-1">Installation<a class="anchor" aria-label="anchor" href="#installation-1"></a>
-</h2>
-<p>In order to use package you need R version 4.1 or newer and remotes-package installed.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"dataninjafi/eufundr"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="example-usage-1">Example Usage<a class="anchor" aria-label="anchor" href="#example-usage-1"></a>
-</h2>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dataninjafi/eufundr" class="external-link">eufundr</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Download all data for Finland</span></span>
-<span><span class="va">all_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_all_data.html">get_all_data</a></span><span class="op">(</span><span class="st">"FI"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Access specific parts</span></span>
-<span><span class="va">projects</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">kohesio_projects</span></span>
-<span><span class="va">beneficiaries</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">kohesio_beneficiaries</span></span>
-<span><span class="va">fts</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">fts</span></span>
-<span><span class="va">horizon2020</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_2020</span></span>
-<span><span class="va">horizon_europe</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">horizon_europe</span></span>
-<span><span class="va">interreg</span> <span class="op">&lt;-</span> <span class="va">all_data</span><span class="op">$</span><span class="va">interreg</span></span>
-<span></span>
-<span><span class="co"># Download only certain country and sources</span></span>
-<span></span>
-<span><span class="co">## Get Greek kohesio projects</span></span>
-<span> <span class="va">kohesio_projects</span> <span class="op">=</span> <span class="fu"><a href="reference/get_kohesio_projects.html">get_kohesio_projects</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"GR"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Get Romanian beneficiaries</span></span>
-<span>    </span>
-<span><span class="va">kohesio_beneficiaries</span> <span class="op">=</span> <span class="fu"><a href="reference/get_kohesio_beneficiaries.html">get_kohesio_beneficiaries</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"RO"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Get Dutch FTS data for year 2024</span></span>
-<span><span class="va">fts</span> <span class="op">=</span> <span class="fu"><a href="reference/get_fts_data.html">get_fts_data</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2024</span>, country <span class="op">=</span>  <span class="st">"NL"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Get Swedish Horizon data</span></span>
-<span><span class="va">horizon</span> <span class="op">=</span> <span class="fu"><a href="reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>programme <span class="op">=</span> <span class="st">"HORIZON"</span>, country <span class="op">=</span> <span class="st">"SE"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Get Danish h2020 data</span></span>
-<span><span class="va">h2020</span> <span class="op">=</span> <span class="fu"><a href="reference/get_horizon_data.html">get_horizon_data</a></span><span class="op">(</span>programme <span class="op">=</span> <span class="st">"h2020"</span>, country <span class="op">=</span> <span class="st">"DK"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co">## Get Portugese interreg data</span></span>
-<span><span class="va">interreg</span> <span class="op">=</span> <span class="fu"><a href="reference/get_interreg_data.html">get_interreg_data</a></span><span class="op">(</span>country <span class="op">=</span> <span class="st">"PT"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="contributing-1">Contributing<a class="anchor" aria-label="anchor" href="#contributing-1"></a>
-</h2>
-<p>Pull requests and issues are welcome! This project follows an open data and open science ethos.</p>
-</div>
-<div class="section level2">
-<h2 id="license-1">License<a class="anchor" aria-label="anchor" href="#license-1"></a>
-</h2>
+<div class="section level3">
+<h3 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h3>
 <p>MIT © Risto Kaartinen</p>
 </div>
 </div>
-
-  </main><aside class="col-md-3"><div class="links">
-<h2 data-toc-skip>Links</h2>
-<ul class="list-unstyled">
-<li><a href="https://github.com/dataninjafi/eufundr/" class="external-link">Browse source code</a></li>
-<li><a href="https://github.com/dataninjafi/eufundr/issues" class="external-link">Report a bug</a></li>
-</ul>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
-<div class="license">
-<h2 data-toc-skip>License</h2>
-<ul class="list-unstyled">
-<li><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a></li>
-</ul>
-</div>
-
-
-<div class="citation">
-<h2 data-toc-skip>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html#citation">Citing eufundr</a></li>
-</ul>
-</div>
-
-<div class="developers">
-<h2 data-toc-skip>Developers</h2>
-<ul class="list-unstyled">
-<li>Risto Kaartinen <br><small class="roles"> Author, maintainer </small>  </li>
-</ul>
-</div>
-
-
-
-  </aside>
-</div>
 
 
     <footer><div class="pkgdown-footer-left">
