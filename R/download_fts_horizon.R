@@ -58,8 +58,11 @@ get_horizon_data <- function(programme = c("HORIZON", "h2020"), country = NULL) 
   httr::GET(url, httr::timeout(300), httr::write_disk(zipfile, overwrite = TRUE))
 
   # Read project and organization data
-  projects <- readr::read_csv2(unz(zipfile, "project.csv"))
-  organizations <- readr::read_csv2(unz(zipfile, "organization.csv"))
+  projects <- readr::read_csv2(unz(zipfile, "project.csv")) |>
+    rename(project_totalCost =totalCost,
+           project_contentUpdateDate = contentUpdateDate)
+  organizations <- readr::read_csv2(unz(zipfile, "organization.csv")) |>
+    select(-rcn)
 
   # Filter organizations by country if applicable
   if (!is.null(country)) {
