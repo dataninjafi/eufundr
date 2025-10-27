@@ -11,7 +11,7 @@ output: github_document
 
 - **Kohesio**: A comprehensive database of EU Cohesion Policy projects and beneficiaries. The portal brings together information on over 1.5 million projects across Europe, including funding sources, amounts, and implementing organizations. It enables users to track how EU regional and structural funds are invested in different member states. More information and open data: https://kohesio.ec.europa.eu/en/data.
 - **FTS**: The Financial Transparency System provides detailed information on EU budget expenditures and beneficiaries. It includes data on recipients of EU funding, amounts granted, and related programmes across multiple years. The system promotes transparency and accountability in the use of EU public funds. More information and open data: https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data
-- **CORDIS**: The EU’s research and innovation funding programmes supporting scientific excellence, collaboration, and technological development across Europe. The CORDIS portal provides information on projects, funding, participants, and outcomes, covering both ongoing and completed initiatives. More information and open data: https://cordis.europa.eu/projects
+- **CORDIS**: CORDIS: The EU’s research and innovation funding programmes supporting scientific excellence, collaboration, and technological development across Europe (Horizon Europe and Horizon 2020 datasets). The CORDIS portal provides information on projects, funding, participants, and outcomes, covering both ongoing and completed initiatives. More information and open data: https://cordis.europa.eu/projects
 - **Interreg**: A database containing approved and contracted Interreg and IPA cross-border cooperation projects. It also includes projects funded by other EU instruments or funds contributing to macro-regional strategies (up to 2020). The portal offers a comprehensive overview of EU territorial cooperation initiatives. More information and open data: https://keep.eu
 
 This package uses the data as it is served on the web page or API. Also the documentation of the data should be somewhere on these web pages.  
@@ -598,7 +598,7 @@ $ call_serial_number                                                     <chr> "
 ```
 
 
-## Example product that uses of this data
+## Example product that uses this data
 
 The Finnish Certifying Body for Agricultural Funds has developed a Power BI dashboard that allows users to explore the relevant data to detect potential cases of double funding. Users can examine VAT numbers, company names, project titles, and project descriptions.
 

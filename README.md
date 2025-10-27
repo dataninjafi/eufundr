@@ -10,7 +10,7 @@ eufundr
 
 - **Kohesio**: A comprehensive database of EU Cohesion Policy projects and beneficiaries. The portal brings together information on over 1.5 million projects across Europe, including funding sources, amounts, and implementing organizations. It enables users to track how EU regional and structural funds are invested in different member states. More information and open data: https://kohesio.ec.europa.eu/en/data.
 - **FTS**: The Financial Transparency System provides detailed information on EU budget expenditures and beneficiaries. It includes data on recipients of EU funding, amounts granted, and related programmes across multiple years. The system promotes transparency and accountability in the use of EU public funds. More information and open data: https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data
-- **CORDIS**: The EU’s research and innovation funding programmes supporting scientific excellence, collaboration, and technological development across Europe. The CORDIS portal provides information on projects, funding, participants, and outcomes, covering both ongoing and completed initiatives. More information and open data: https://cordis.europa.eu/projects
+- **CORDIS**: CORDIS: The EU’s research and innovation funding programmes supporting scientific excellence, collaboration, and technological development across Europe (Horizon Europe and Horizon 2020 datasets). The CORDIS portal provides information on projects, funding, participants, and outcomes, covering both ongoing and completed initiatives. More information and open data: https://cordis.europa.eu/projects
 - **Interreg**: A database containing approved and contracted Interreg and IPA cross-border cooperation projects. It also includes projects funded by other EU instruments or funds contributing to macro-regional strategies (up to 2020). The portal offers a comprehensive overview of EU territorial cooperation initiatives. More information and open data: https://keep.eu
 
 This package uses the data as it is served on the web page or API. Also the documentation of the data should be somewhere on these web pages.  
@@ -20,8 +20,6 @@ One use case for this **data loading tool** is to download data for further expl
 ## Installation
 
 In order to use package you need R version 4.1 or newer and remotes-package installed. If you are new to R and using R code please see https://rstudio-education.github.io/hopr/starting.html for more instructions.
-
-
 
 ```r
 # install.packages("remotes")
@@ -597,7 +595,7 @@ $ call_serial_number                                                     <chr> "
 ```
 
 
-## Example product that uses of this data
+## Example product that uses this data
 
 The Finnish Certifying Body for Agricultural Funds has developed a Power BI dashboard that allows users to explore the relevant data to detect potential cases of double funding. Users can examine VAT numbers, company names, project titles, and project descriptions.
 
@@ -607,93 +605,6 @@ The Finnish Certifying Body for Agricultural Funds has developed a Power BI dash
 ## Contributing
 
 Pull requests and issues are welcome! This project follows an open data and open science ethos.
-
-## License
-
-MIT © Risto Kaartinen
-
-![](man/figures/eufundr.png)
-
-# eufundr
-
-`eufundr` is an R package for downloading publicly available EU funding
-data from multiple official sources:
-
-- **Kohesio**: EU Cohesion Policy projects and beneficiaries.
-  <https://kohesio.ec.europa.eu/en/data>
-- **FTS**: Financial Transparency System (EU budget expenditures)
-  <https://ec.europa.eu/budget/financial-transparency-system/help.html#download-data>
-- **CORDIS**: Horizon Europe and Horizon 2020 research funding data
-  <https://cordis.europa.eu/projects>
-- **Interreg**: keep.eu contains data on Interreg and IPA-IPA
-  cross-border projects that have been approved and contracted and it
-  also includes projects from other EU instruments or funds that
-  contribute to macro-regional strategies (up to 2020).
-
-This package uses the data as it is served on the web page or API. Also
-the documentation of the data should be somewhere on these web pages.
-
-One use case for this **data loading tool** is to download data for
-further exploration, for example, to check whether a beneficiary
-(company or organization) is double-funded. Users can explore company
-IDs, company names, project names, and project descriptions from the
-dataset. The data can help answer questions such as: ‘For what purpose
-did a company receive funding?’ or ‘Which companies received grants, and
-for what purposes?’
-
-## Installation
-
-In order to use package you need R version 4.1 or newer and
-remotes-package installed.
-
-``` r
-# install.packages("remotes")
-remotes::install_github("dataninjafi/eufundr")
-```
-
-## Example Usage
-
-``` r
-library(eufundr)
-
-# Download all data for Finland
-all_data <- get_all_data("FI")
-
-# Access specific parts
-projects <- all_data$kohesio_projects
-beneficiaries <- all_data$kohesio_beneficiaries
-fts <- all_data$fts
-horizon2020 <- all_data$horizon_2020
-horizon_europe <- all_data$horizon_europe
-interreg <- all_data$interreg
-
-# Download only certain country and sources
-
-## Get Greek kohesio projects
- kohesio_projects = get_kohesio_projects(country = "GR")
-
-## Get Romanian beneficiaries
-    
-kohesio_beneficiaries = get_kohesio_beneficiaries(country = "RO")
-
-## Get Dutch FTS data for year 2024
-fts = get_fts_data(year = 2024, country =  "NL")
-
-## Get Swedish Horizon data
-horizon = get_horizon_data(programme = "HORIZON", country = "SE")
-
-## Get Danish h2020 data
-h2020 = get_horizon_data(programme = "h2020", country = "DK")
-
-## Get Portugese interreg data
-interreg = get_interreg_data(country = "PT")
-
-```
-
-## Contributing
-
-Pull requests and issues are welcome! This project follows an open data
-and open science ethos.
 
 ## License
 
